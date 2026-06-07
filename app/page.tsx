@@ -14,13 +14,13 @@ const heroData = {
   headline: "Turn Any Product Link Into A Powerful Storefront",
   subheadline:
     "Transform Amazon, Flipkart, and Myntra product links into beautiful creator storefronts. Organize collections, share recommendations, and build your creator brand with AI.",
-  primaryCta: { label: "Get Started", href: "#get-started" },
+  primaryCta: { label: "Get Started", href: "/auth" },
   secondaryCta: { label: "Explore Creators", href: "#creators" },
 };
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-[#111827]">
+    <main className="min-h-screen bg-[#F8F8FC] text-[#111827]">
       <Navbar items={navItems} />
       <HeroSection {...heroData} />
     </main>

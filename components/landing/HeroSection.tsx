@@ -1,6 +1,7 @@
 
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface HeroSectionProps {
@@ -80,12 +81,12 @@ export default function HeroSection({
             </p>
 
             <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
-              <a
+              <Link
                 href={primaryCta.href}
                 className="inline-flex w-fit items-center justify-center rounded-full border border-[#D1D5DB] bg-[#B4FF39] px-6 py-3 text-sm font-semibold text-[#111827] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:px-8 sm:py-3 md:text-base"
               >
                 {primaryCta.label}
-              </a>
+              </Link>
             </div>
 
             <div className="mt-8 w-full max-w-md rounded-[2rem] border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur transition-all duration-300 lg:max-w-none">
