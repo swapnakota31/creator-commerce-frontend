@@ -1,21 +1,21 @@
-import HeroSection from "@/components/landing/HeroSection";
-import Navbar from "@/components/landing/Navbar";
+import HeroSection from '@/components/landing/HeroSection';
+import Navbar from '@/components/landing/Navbar';
 
 const navItems = [
-  { label: "Features", href: "#features" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Need of LinkShelf", href: "#need" },
-  { label: "Why creators need", href: "#why-creators" },
-  { label: "How to become an affiliate", href: "#affiliate" },
+  { label: 'Features', href: '#features' },
+  { label: 'How it works', href: '#how-it-works' },
+  { label: 'Why LinkShelf', href: '#why-linkshelf' },
+  { label: 'Creators', href: '#creators' },
+  { label: 'Get started', href: '#get-started' },
 ];
 
 const heroData = {
-  badgeText: "AI-Powered Creator Commerce",
-  headline: "Turn Any Product Link Into A Powerful Storefront",
+  badgeText: 'AI-Powered Creator Commerce',
+  headline: 'Turn Any Product Link Into A Powerful Storefront',
   subheadline:
-    "Transform Amazon, Flipkart, and Myntra product links into beautiful creator storefronts. Organize collections, share recommendations, and build your creator brand with AI.",
-  primaryCta: { label: "Get Started", href: "#get-started" },
-  secondaryCta: { label: "Explore Creators", href: "#creators" },
+    'Transform links into a premium creator storefront, organize your products, and grow a business that feels polished from the first click.',
+  primaryCta: { label: 'Get Started', href: '/creator/alexrivera_official/dashboard' },
+  secondaryCta: { label: 'Explore Creators', href: '#creators' },
 };
 
 export default function Home() {
