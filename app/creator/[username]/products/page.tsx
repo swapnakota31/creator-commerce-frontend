@@ -1,7 +1,7 @@
 import CreatorRouteShell from '@/components/creator/CreatorRouteShell';
 
 type CreatorProductsPageProps = {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 };
 
 const products = [
@@ -10,13 +10,14 @@ const products = [
   { name: 'Social Growth Templates', status: 'Live', revenue: '$2,860' },
 ];
 
-export default function CreatorProductsPage({ params }: CreatorProductsPageProps) {
+export default async function CreatorProductsPage({ params }: CreatorProductsPageProps) {
+  const { username } = await params;
   return (
-    <CreatorRouteShell username={params.username} sectionTitle="Products">
+    <CreatorRouteShell username={username} sectionTitle="Products">
       <div className="bg-[color:var(--color-card)] rounded-[24px] border border-[color:var(--color-border)] shadow-sm overflow-hidden">
         <div className="p-6 border-b border-[color:var(--color-border)]">
           <h1 className="text-2xl font-bold">Products</h1>
-          <p className="text-sm text-muted mt-1">Manage the products attached to @{params.username}.</p>
+          <p className="text-sm text-muted mt-1">Manage the products attached to @{username}.</p>
         </div>
         <div className="divide-y divide-[color:var(--color-border)]">
           {products.map((product) => (

@@ -1,7 +1,7 @@
 import CreatorRouteShell from '@/components/creator/CreatorRouteShell';
 
 type CreatorDashboardPageProps = {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 };
 
 const dashboardStats = [
@@ -11,9 +11,10 @@ const dashboardStats = [
   { label: 'Views', value: '84.2K', detail: '+4.2% vs last week' },
 ];
 
-export default function CreatorDashboardPage({ params }: CreatorDashboardPageProps) {
+export default async function CreatorDashboardPage({ params }: CreatorDashboardPageProps) {
+  const { username } = await params;
   return (
-    <CreatorRouteShell username={params.username} sectionTitle="Dashboard">
+    <CreatorRouteShell username={username} sectionTitle="Dashboard">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
         {dashboardStats.map((stat) => (
           <div key={stat.label} className="bg-[color:var(--color-card)] rounded-[24px] border border-[color:var(--color-border)] shadow-sm p-6">
@@ -29,7 +30,7 @@ export default function CreatorDashboardPage({ params }: CreatorDashboardPagePro
           <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="text-2xl font-bold">Dashboard Overview</h1>
-              <p className="text-sm text-muted mt-1">Performance summary for @{params.username}.</p>
+              <p className="text-sm text-muted mt-1">Performance summary for @{username}.</p>
             </div>
             <button className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] text-white font-semibold">
               Share Profile

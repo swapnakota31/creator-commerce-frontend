@@ -1,7 +1,7 @@
 import CreatorRouteShell from '@/components/creator/CreatorRouteShell';
 
 type CreatorSettingsPageProps = {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 };
 
 const settings = [
@@ -12,12 +12,13 @@ const settings = [
   'Billing Settings',
 ];
 
-export default function CreatorSettingsPage({ params }: CreatorSettingsPageProps) {
+export default async function CreatorSettingsPage({ params }: CreatorSettingsPageProps) {
+  const { username } = await params;
   return (
-    <CreatorRouteShell username={params.username} sectionTitle="Settings">
+    <CreatorRouteShell username={username} sectionTitle="Settings">
       <div className="bg-[color:var(--color-card)] rounded-[24px] border border-[color:var(--color-border)] shadow-sm p-6">
         <h1 className="text-2xl font-bold">Settings</h1>
-        <p className="text-sm text-muted mt-1">Quick access for @{params.username}.</p>
+        <p className="text-sm text-muted mt-1">Quick access for @{username}.</p>
 
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
           {settings.map((setting) => (

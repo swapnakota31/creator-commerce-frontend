@@ -1,6 +1,6 @@
  'use client';
 
-import { useState } from 'react';
+import { use, useState } from 'react';
 import CreatorRouteShell from '@/components/creator/CreatorRouteShell';
 import CreatorProfileEditor from '@/components/creator/CreatorProfileEditor';
 import CreatorProfileStats from '@/components/creator/CreatorProfileStats';
@@ -11,10 +11,11 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 type CreatorProfilePageProps = {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 };
 
 export default function CreatorProfilePage({ params }: CreatorProfilePageProps) {
+  const { username } = use(params);
   const [socialLinks, setSocialLinks] = useState(initialSocialLinks);
 
   const handleLinkChange = (key: typeof initialSocialLinks[number]['key'], value: string) => {
@@ -29,8 +30,8 @@ export default function CreatorProfilePage({ params }: CreatorProfilePageProps) 
   const publicViewSlots = Array.from({ length: 6 }, (_, index) => activeLinks[index] ?? null);
 
   return (
-    <CreatorRouteShell username={params.username} sectionTitle="Profile">
-      <CreatorProfileEditor username={params.username} />
+    <CreatorRouteShell username={username} sectionTitle="Profile">
+      <CreatorProfileEditor username={username} />
       <CreatorProfileStats />
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 pb-12">

@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation';
 
 type CreatorLandingPageProps = {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 };
 
-export default function CreatorLandingPage({ params }: CreatorLandingPageProps) {
-  const { username } = params;
+export default async function CreatorLandingPage({ params }: CreatorLandingPageProps) {
+  const { username } = await params;
   redirect(`/creator/${username}/profile`);
 }

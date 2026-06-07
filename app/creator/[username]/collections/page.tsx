@@ -1,7 +1,7 @@
 import CreatorRouteShell from '@/components/creator/CreatorRouteShell';
 
 type CreatorCollectionsPageProps = {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 };
 
 const collections = [
@@ -22,9 +22,10 @@ const collections = [
   },
 ];
 
-export default function CreatorCollectionsPage({ params }: CreatorCollectionsPageProps) {
+export default async function CreatorCollectionsPage({ params }: CreatorCollectionsPageProps) {
+  const { username } = await params;
   return (
-    <CreatorRouteShell username={params.username} sectionTitle="Collections">
+    <CreatorRouteShell username={username} sectionTitle="Collections">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {collections.map((collection) => (
           <div key={collection.title} className="bg-[color:var(--color-card)] rounded-[24px] border border-[color:var(--color-border)] shadow-sm p-6">
