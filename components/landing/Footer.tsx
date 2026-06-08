@@ -6,19 +6,39 @@ export default function Footer() {
   const footerLinks = [
     {
       title: "Product",
-      links: ["Features", "Templates", "How it Works", "How to Earn"],
+      links: [
+        { label: "Features", href: "#features-grid" },
+        { label: "Templates", href: "#templates" },
+        { label: "How it Works", href: "#how-it-works" },
+        { label: "How to Earn", href: "#how-to-earn" }
+      ],
     },
     {
       title: "Resources",
-      links: ["Blog", "Help Center", "Guides", "API Docs"],
+      links: [
+        { label: "Blog", href: "#" },
+        { label: "Help Center", href: "#" },
+        { label: "Guides", href: "#" },
+        { label: "API Docs", href: "#" }
+      ],
     },
     {
       title: "Company",
-      links: ["About Us", "Careers", "Contact", "Press"],
+      links: [
+        { label: "About Us", href: "#" },
+        { label: "Careers", href: "#" },
+        { label: "Contact", href: "#" },
+        { label: "Press", href: "#" }
+      ],
     },
     {
       title: "Legal",
-      links: ["Privacy Policy", "Terms of Service", "Refund Policy", "Security"],
+      links: [
+        { label: "Privacy Policy", href: "#" },
+        { label: "Terms of Service", href: "#" },
+        { label: "Refund Policy", href: "#" },
+        { label: "Security", href: "#" }
+      ],
     },
   ];
 
@@ -75,9 +95,9 @@ export default function Footer() {
                 <h3 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-8">{column.title}</h3>
                 <ul className="space-y-5">
                   {column.links.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium">
-                        {link}
+                    <li key={link.label}>
+                      <a href={link.href} className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium">
+                        {link.label}
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
                       </a>
                     </li>

@@ -70,7 +70,7 @@ export default function HeroSection({ badgeText, headline, subheadline, primaryC
               {/* Main 3D Image with Natural Lavender Masking */}
                <div className="relative w-full h-full overflow-hidden rounded-[60px]">
                  <Image 
-                   src="/images/hero-image1.png" 
+                   src="/images/hero-image2.png" 
                    alt="LinkNest 3D Mockup" 
                    fill
                    priority

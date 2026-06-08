@@ -76,14 +76,14 @@ export default function BuildStorefrontSection() {
       ],
     },
     {
-      title: "Custom Store",
-      desc: "Build anything unique with custom blocks",
-      color: "bg-slate-500",
-      tag: "Created Template",
+      title: "Customizable Storefront",
+      desc: "Drag & drop blocks to build a unique shopping experience",
+      color: "bg-[#4B5563]",
+      tag: "Design Mode",
       items: [
-        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=200&h=200&fit=crop",
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=200&h=200&fit=crop",
-        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=200&h=200&fit=crop"
+        "https://placehold.co/200x200/f3f4f6/94a3b8?text=Block",
+        "https://placehold.co/200x200/f3f4f6/94a3b8?text=Block",
+        "https://placehold.co/200x200/f3f4f6/94a3b8?text=Block"
       ],
     },
   ];

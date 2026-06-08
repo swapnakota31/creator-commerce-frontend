@@ -1,15 +1,15 @@
 import HeroSection from "@/components/landing/HeroSection";
 import WhyLinkNest from "@/components/landing/WhyLinkNest";
 import HowItWorksSection from "@/components/landing/HowItWorksSection";
+import EverythingYouNeedSection from "@/components/landing/EverythingYouNeedSection";
 import BuildStorefrontSection from "@/components/landing/BuildStorefrontSection";
-import FeaturesGrid from "@/components/landing/FeaturesGrid";
 import ImportSection from "@/components/landing/ImportSection";
 import AnalyticsDashboardSection from "@/components/landing/AnalyticsDashboardSection";
 import Footer from "@/components/landing/Footer";
 import Navbar from "@/components/landing/Navbar";
 
 const navItems = [
-  { label: "Templates", href: "#features" },
+  { label: "Templates", href: "#templates" },
   { label: "How it works", href: "#how-it-works" },
   { label: "Why LinkNest", href: "#need-of-linknest" },
   { label: "Features", href: "#features-grid" },
@@ -31,9 +31,9 @@ export default function Home() {
       <Navbar items={navItems} />
       <HeroSection {...heroData} />
       <HowItWorksSection />
+      <EverythingYouNeedSection />
       <WhyLinkNest />
       <BuildStorefrontSection />
-      <FeaturesGrid />
       <ImportSection />
       <AnalyticsDashboardSection />
       <Footer />
