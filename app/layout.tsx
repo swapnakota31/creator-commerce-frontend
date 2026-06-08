@@ -1,4 +1,8 @@
 import "./globals.css";
+import { Manrope, Space_Grotesk } from "next/font/google";
+
+const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
 
 export default function RootLayout({
   children,
@@ -7,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${manrope.variable} ${spaceGrotesk.variable} bg-[#F8F8FC]`}>{children}</body>
     </html>
   );
 }
