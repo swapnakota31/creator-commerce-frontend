@@ -1,6 +1,7 @@
 "use client";
 
 import { useDragScroll } from "@/hooks/useDragScroll";
+import SocialEcosystem from "./SocialEcosystem";
 
 export default function HowItWorksSection() {
   const { scrollRef, onMouseDown, onMouseLeave, onMouseUp, onMouseMove, isDragging } = useDragScroll();
@@ -94,7 +95,11 @@ export default function HowItWorksSection() {
                       {step.id}
                     </div>
                     <div className="aspect-[4/3] rounded-3xl overflow-hidden bg-slate-50 flex items-center justify-center relative">
-                       <img src={step.img} alt={step.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                       {step.id === "04" ? (
+                         <SocialEcosystem />
+                       ) : (
+                         <img src={step.img} alt={step.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                       )}
                        
                        {/* Simulated URL Bar for Step 01 */}
                        {step.id === "01" && (
