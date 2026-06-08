@@ -56,7 +56,7 @@ export default function HowItWorksSection() {
             How it <span className="text-[#7B2CFF]">Works</span>
           </h2>
           <p className="text-[#6B7280] max-w-2xl mx-auto font-medium">
-            Setting up your professional storefront is as easy as 1-2-3. Start monetizing your content in minutes.
+            Setting up your professional storefront is as easy as 1-2-3-4. Start monetizing your content in minutes.
           </p>
         </div>
 

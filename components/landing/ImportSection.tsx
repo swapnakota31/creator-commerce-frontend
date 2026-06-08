@@ -6,7 +6,7 @@ function BrandCard({ brand }: { brand: any }) {
   const [imgStatus, setImgStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
 
   return (
-    <div className={`flex-none flex h-32 w-60 items-center justify-center rounded-[32px] border border-white/60 bg-white/90 backdrop-blur-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03),0_12px_40px_rgba(0,0,0,0.04)] transition-all duration-500 hover:shadow-[0_20px_80px_rgba(0,0,0,0.15)] hover:-translate-y-3 hover:scale-[1.02] ${brand.border} group overflow-hidden relative`}>
+    <div className={`flex-none flex h-32 w-60 items-center justify-center rounded-[32px] border border-white/60 bg-white backdrop-blur-xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03),0_12px_40px_rgba(0,0,0,0.04)] transition-all duration-500 hover:shadow-[0_20px_80px_rgba(0,0,0,0.15)] hover:-translate-y-3 hover:scale-[1.02] ${brand.border} group overflow-hidden relative`}>
       {/* Dynamic Brand Glow - Much more vibrant */}
       <div className={`absolute -inset-4 ${brand.glow} opacity-0 group-hover:opacity-30 blur-[40px] transition-all duration-700 pointer-events-none`} />
       
@@ -27,17 +27,17 @@ function BrandCard({ brand }: { brand: any }) {
 
         {/* Premium Fallback - Sharp Typography and Vibrant Colors */}
         {(imgStatus === 'error' || imgStatus === 'loading') && (
-          <div className={`flex flex-col items-center justify-center text-center px-4 transition-all duration-500 ${imgStatus === 'loading' ? 'opacity-20' : 'opacity-100'}`}>
+          <div className={`flex flex-col items-center justify-center text-center px-4 transition-all duration-500 opacity-100`}>
             <span className={`text-2xl sm:text-3xl font-[900] tracking-tighter ${brand.color} leading-none transition-all duration-500 group-hover:scale-110 drop-shadow-[0_4px_12px_rgba(0,0,0,0.1)]`}>
               {brand.name}
             </span>
-            <div className={`h-2 w-16 rounded-full bg-current ${brand.color} opacity-80 mt-4 shadow-[0_4px_15px_rgba(0,0,0,0.1)] transition-all duration-500 group-hover:w-28 group-hover:opacity-100`} />
+            <div className={`h-2 w-16 rounded-full bg-current ${brand.color} opacity-100 mt-4 shadow-[0_4px_15px_rgba(0,0,0,0.1)] transition-all duration-500 group-hover:w-28 group-hover:opacity-100`} />
           </div>
         )}
       </div>
       
       {/* 3D Edge Lighting */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent opacity-80" />
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white to-transparent opacity-100" />
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-black/[0.05] to-transparent" />
       <div className="absolute inset-0 border-[1px] border-white/40 rounded-[32px] pointer-events-none" />
     </div>
