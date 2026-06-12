@@ -56,13 +56,14 @@ export default function StoreSetupForm({ onSubmit }: StoreSetupFormProps) {
   }
 
   return (
-    <div className="rounded-3xl border border-white/50 bg-white/80 backdrop-blur-md p-8 shadow-[0_20px_60px_rgba(161,0,255,0.12)] overflow-hidden relative">
+    
+      <div className="rounded-3xl border border-purple-200 bg-white/80 backdrop-blur-md p-4 sm:p-5 shadow-[0_20px_60px_rgba(161,0,255,0.12)] overflow-hidden relative">
       {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-transparent to-blue-50 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-200 via-transparent to-blue-100 pointer-events-none" />
 
-      <form className="space-y-6 relative z-10" onSubmit={handleSubmit}>
+      <form className="space-y-3 sm:space-y-5 relative z-10" onSubmit={handleSubmit}>
         {/* Store Name Input */}
-        <div className="space-y-3">
+        <div className="space-y-2">
           <label htmlFor="store-name" className="block text-sm font-semibold text-[#111827]">
             Store Name
           </label>
@@ -81,7 +82,7 @@ export default function StoreSetupForm({ onSubmit }: StoreSetupFormProps) {
         </div>
 
         {/* Product URL Input */}
-        <div className="space-y-3">
+        <div className="space-y-2">
           <label htmlFor="product-url" className="block text-sm font-semibold text-[#111827]">
             Affiliate / Product URL
           </label>

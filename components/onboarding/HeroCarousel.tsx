@@ -56,7 +56,7 @@ export default function HeroCarousel() {
       >
         {/* Image Container */}
         <div className="relative w-full overflow-hidden bg-white">
-          <div className="relative h-60 sm:h-64 w-full">
+          <div className="relative h-48 sm:h-56 w-full">
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
@@ -77,7 +77,7 @@ export default function HeroCarousel() {
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex justify-center gap-2 pb-6 pt-4 bg-white">
+        <div className="flex justify-center gap-2 pb-3 pt-2 bg-white">
           {slides.map((_, index) => (
             <button
               key={index}

@@ -45,15 +45,13 @@ export default function LoadingState() {
       <div className="absolute inset-0 bg-black/40 backdrop-blur-md" />
 
       {/* Content */}
-      <div className="relative rounded-3xl border border-white/50 bg-white/95 backdrop-blur-xl p-8 sm:p-10 shadow-[0_25px_100px_rgba(0,0,0,0.3)] max-w-md w-full animate-in fade-in zoom-in duration-500">
+      <div className="relative rounded-3xl border border-white/50 bg-white/95 backdrop-blur-xl p-4 sm:p-6 shadow-[0_25px_100px_rgba(0,0,0,0.3)] max-w-md w-full animate-in fade-in zoom-in duration-500">
         {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-blue-50 pointer-events-none rounded-3xl" />
 
         <div className="relative z-10">
           {/* Header Icon */}
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-[#A100FF] to-[#7B2CFF] text-white shadow-[0_12px_40px_rgba(161,0,255,0.25)]">
-            <Sparkles className="h-10 w-10 animate-pulse" />
-          </div>
+          
 
           {/* Title */}
           <div className="mt-6 text-center">
