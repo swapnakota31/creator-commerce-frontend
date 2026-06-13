@@ -15,8 +15,7 @@ export default function Footer() {
     {
       title: "Company",
       links: [
-        { label: "About Us", href: "#" },
-        { label: "Contact Us", href: "#" }
+        { label: "About Us", href: "#" }
       ],
     },
     {
@@ -29,10 +28,10 @@ export default function Footer() {
       ],
     },
     {
-      title: "Support",
+      title: "Help Center",
       links: [
-        { label: "Help Center", href: "#" },
-        { label: "FAQs", href: "#" }
+        { label: "FAQs", href: "#" },
+        { label: "Contact Us", href: "#" }
       ],
     },
     {
@@ -150,7 +149,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-slate-500">
-          <p className="text-sm font-medium">© 2026 LinkNest Inc.</p>
+          <p className="text-sm font-medium">© 2026 LinkNest. All rights reserved.</p>
           
           <div className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
              <span className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)] animate-pulse" />
