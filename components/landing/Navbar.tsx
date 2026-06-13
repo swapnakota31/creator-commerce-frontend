@@ -76,13 +76,13 @@ export default function Navbar({ items = defaultNavItems }: NavbarProps) {
 
           <div className="flex items-center gap-2 sm:gap-3">
             <a
-              href="#login"
+              href="/auth"
               className="hidden rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-[#111827] transition duration-300 hover:border-[#B4FF39] hover:text-[#B4FF39] sm:inline-flex md:px-4 md:py-2 md:text-sm"
             >
               Login
             </a>
             <a
-              href="#get-started"
+              href="/auth"
               className="hidden rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-[#111827] shadow-sm transition duration-300 hover:border-[#B4FF39] hover:bg-[#B4FF39] hover:text-[#111827] sm:inline-flex md:px-4 md:py-2 md:text-sm"
             >
               Get Started
@@ -131,14 +131,14 @@ export default function Navbar({ items = defaultNavItems }: NavbarProps) {
           </nav>
           <div className="mt-4 flex flex-col gap-2 border-t border-slate-200 pt-4 sm:flex-row">
             <a
-              href="#login"
+              href="/auth"
               onClick={() => setMobileOpen(false)}
               className="inline-flex w-full items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-[#111827] transition duration-300 hover:border-[#B4FF39] hover:text-[#B4FF39] sm:w-auto"
             >
               Login
             </a>
             <a
-              href="#get-started"
+              href="/auth"
               onClick={() => setMobileOpen(false)}
               className="inline-flex w-full items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-[#111827] transition duration-300 hover:border-[#B4FF39] hover:bg-[#B4FF39] hover:text-[#111827] sm:w-auto"
             >
