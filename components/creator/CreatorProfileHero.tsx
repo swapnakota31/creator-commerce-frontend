@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Share2, Edit3, MapPin, Link as LinkIcon, Camera as InstagramIcon, Play as YoutubeIcon, MessageSquare as TwitterIcon, Send } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -24,9 +25,11 @@ export default function CreatorProfileHero() {
           {/* Profile Photo */}
           <div className="relative group">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-1.5 bg-[color:var(--color-card)] border-4 border-[color:var(--color-card)] shadow-xl overflow-hidden">
-              <img 
+              <Image
                 src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1587&auto=format&fit=crop" 
                 alt="Creator"
+                width={160}
+                height={160}
                 className="w-full h-full object-cover rounded-full"
               />
             </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useSyncExternalStore } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -11,22 +11,51 @@ type ThemeContextValue = {
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
+const THEME_EVENT = 'creator-commerce-theme';
+
+function isTheme(value: string | null): value is Theme {
+  return value === 'light' || value === 'dark';
+}
+
+function getStoredTheme(): Theme {
+  if (typeof window === 'undefined') {
+    return 'light';
+  }
+
+  const storedTheme = window.localStorage.getItem('theme');
+  if (isTheme(storedTheme)) {
+    return storedTheme;
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function subscribeToThemeChanges(onStoreChange: () => void) {
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === 'theme') {
+      onStoreChange();
+    }
+  };
+
+  window.addEventListener('storage', handleStorage);
+  window.addEventListener(THEME_EVENT, onStoreChange);
+
+  return () => {
+    window.removeEventListener('storage', handleStorage);
+    window.removeEventListener(THEME_EVENT, onStoreChange);
+  };
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('light');
+  const theme = useSyncExternalStore<Theme>(subscribeToThemeChanges, getStoredTheme, () => 'light');
 
   useEffect(() => {
-    const storedTheme = window.localStorage.getItem('theme') as Theme | null;
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const initialTheme = storedTheme ?? systemTheme;
-
-    setThemeState(initialTheme);
-    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
-  }, []);
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
 
   const setTheme = (nextTheme: Theme) => {
-    setThemeState(nextTheme);
     window.localStorage.setItem('theme', nextTheme);
-    document.documentElement.classList.toggle('dark', nextTheme === 'dark');
+    window.dispatchEvent(new Event(THEME_EVENT));
   };
 
   const value = useMemo(() => ({ theme, setTheme }), [theme]);

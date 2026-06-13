@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, FolderOpen, MoreHorizontal } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -73,9 +74,11 @@ export default function CreatorFeaturedCollections() {
           >
             {/* Image Section */}
             <div className="h-48 relative overflow-hidden">
-              <img 
+              <Image
                 src={collection.image} 
                 alt={collection.title}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className={cn("absolute inset-0 bg-gradient-to-t from-[color:var(--color-card)] via-transparent to-transparent opacity-60")} />
@@ -101,7 +104,7 @@ export default function CreatorFeaturedCollections() {
                 <div className="flex -space-x-2">
                   {[1, 2, 3].map((person) => (
                     <div key={person} className="w-8 h-8 rounded-full border-2 border-[color:var(--color-card)] bg-muted overflow-hidden">
-                      <img src={`https://i.pravatar.cc/100?u=${person + i}`} alt="User" />
+                      <Image src={`https://i.pravatar.cc/100?u=${person + i}`} alt="User" width={32} height={32} />
                     </div>
                   ))}
                   <div className="w-8 h-8 rounded-full border-2 border-[color:var(--color-card)] bg-muted flex items-center justify-center text-[10px] font-bold text-muted">

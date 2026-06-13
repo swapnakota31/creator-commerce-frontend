@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import {
@@ -163,10 +164,11 @@ export default function CreatorProfileEditor({ username }: CreatorProfileEditorP
           )}
         >
           {bannerImageUrl ? (
-            <img
-              src={bannerImageUrl}
-              alt="Banner preview"
-              className="absolute inset-0 h-full w-full object-cover"
+            <div
+              role="img"
+              aria-label="Banner preview"
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${bannerImageUrl})` }}
             />
           ) : (
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay dark:opacity-50" />
@@ -194,9 +196,11 @@ export default function CreatorProfileEditor({ username }: CreatorProfileEditorP
           <div className="relative z-10 -mt-16 flex flex-col gap-6 md:-mt-20 md:flex-row md:items-end">
             <div className="group relative">
               <div className="h-32 w-32 overflow-hidden rounded-full border-4 border-[color:var(--color-card)] bg-[color:var(--color-card)] p-1.5 shadow-xl md:h-40 md:w-40">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1587&auto=format&fit=crop"
                   alt="Creator"
+                  width={160}
+                  height={160}
                   className="h-full w-full rounded-full object-cover"
                 />
               </div>
