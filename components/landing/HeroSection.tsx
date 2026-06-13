@@ -86,7 +86,7 @@ export default function HeroSection({
                 className="inline-flex w-fit items-center justify-center rounded-full border border-[#D1D5DB] bg-[#B4FF39] px-6 py-3 text-sm font-semibold text-[#111827] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:px-8 sm:py-3 md:text-base"
               >
                 {primaryCta.label}
-              </a>
+              </Link>
               <a
                 href={secondaryCta.href}
                 className="inline-flex w-fit items-center justify-center rounded-full border border-[#D1D5DB] bg-white px-6 py-3 text-sm font-semibold text-[#111827] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:px-8 sm:py-3 md:text-base"
