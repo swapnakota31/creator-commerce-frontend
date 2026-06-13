@@ -74,6 +74,7 @@ export default function HeroSection({ badgeText, headline, subheadline, primaryC
                    alt="LinkNest 3D Mockup" 
                    fill
                    priority
+                   sizes="(max-width: 1024px) 600px, 125vw"
                    className="object-contain transition-transform duration-1000 group-hover:scale-105"
                  />
                  
