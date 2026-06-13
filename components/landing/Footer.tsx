@@ -1,43 +1,44 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
+import AboutUsPopup from './AboutUsPopup';
+import FAQPopup from './FAQPopup';
 
 export default function Footer() {
+  const [isAboutUsOpen, setIsAboutUsOpen] = useState(false);
+  const [isFAQOpen, setIsFAQOpen] = useState(false);
   const footerLinks = [
-    {
-      title: "Product",
-      links: [
-        { label: "Features", href: "#features-grid" },
-        { label: "Templates", href: "#templates" },
-        { label: "How it Works", href: "#how-it-works" },
-        { label: "How to Earn", href: "#how-to-earn" }
-      ],
-    },
-    {
-      title: "Resources",
-      links: [
-        { label: "Blog", href: "#" },
-        { label: "Help Center", href: "#" },
-        { label: "Guides", href: "#" },
-        { label: "API Docs", href: "#" }
-      ],
-    },
     {
       title: "Company",
       links: [
         { label: "About Us", href: "#" },
         { label: "Careers", href: "#" },
-        { label: "Contact", href: "#" },
+        { label: "Contact Us", href: "#" },
         { label: "Press", href: "#" }
+      ],
+    },
+    {
+      title: "Products",
+      links: [
+        { label: "Features", href: "#features-grid" },
+        { label: "Templates", href: "#templates" },
+        { label: "How it works", href: "#how-it-works" },
+        { label: "How to earn", href: "#how-to-earn" }
+      ],
+    },
+    {
+      title: "Support",
+      links: [
+        { label: "Help Center", href: "#" },
+        { label: "FAQs", href: "#" }
       ],
     },
     {
       title: "Legal",
       links: [
         { label: "Privacy Policy", href: "#" },
-        { label: "Terms of Service", href: "#" },
-        { label: "Refund Policy", href: "#" },
-        { label: "Security", href: "#" }
+        { label: "Terms & Conditions", href: "#" },
+        { label: "Site map", href: "#" }
       ],
     },
   ];
@@ -50,8 +51,8 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-[#05040A] text-white pt-12 pb-12 overflow-hidden border-t border-white/5">
-      {/* Background Accents - More Attractive Glows */}
+    <footer className="relative bg-[#05040A] text-white pt-16 pb-12 overflow-hidden border-t border-white/5">
+      {/* Background Accents */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-r from-[#7B2CFF]/15 to-transparent rounded-full blur-[140px] -translate-y-1/2" />
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-l from-[#A100FF]/10 to-transparent rounded-full blur-[120px] translate-y-1/2" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none" />
@@ -71,7 +72,7 @@ export default function Footer() {
               Empowering the next generation of creators with premium tools to build, share, and grow their digital presence globally.
             </p>
 
-            {/* Social Icons - More Attractive Styling */}
+            {/* Social Icons */}
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a 
@@ -88,18 +89,40 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Side */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-4">
-            {footerLinks.map((column) => (
-              <div key={column.title}>
+          {/* Links Side with Vertical Dividers */}
+          <div className="flex flex-wrap gap-8">
+            {footerLinks.map((column, index) => (
+              <div key={column.title} className="relative flex-1 min-w-[140px]">
+                {/* Vertical Divider */}
+                {index > 0 && (
+                  <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10 -ml-4 hidden sm:block" />
+                )}
                 <h3 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-8">{column.title}</h3>
                 <ul className="space-y-5">
                   {column.links.map((link) => (
                     <li key={link.label}>
-                      <a href={link.href} className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium">
-                        {link.label}
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
-                      </a>
+                      {link.label === "About Us" ? (
+                        <button
+                          onClick={() => setIsAboutUsOpen(true)}
+                          className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
+                        >
+                          {link.label}
+                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
+                        </button>
+                      ) : link.label === "FAQs" ? (
+                        <button
+                          onClick={() => setIsFAQOpen(true)}
+                          className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
+                        >
+                          {link.label}
+                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
+                        </button>
+                      ) : (
+                        <a href={link.href} className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium">
+                          {link.label}
+                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -108,16 +131,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar - Clean & Modern */}
+        {/* Bottom Bar */}
         <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-slate-500">
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-            <p className="text-sm font-medium">© 2026 LinkNest Inc.</p>
-            <div className="h-4 w-px bg-white/10 hidden md:block" />
-            <div className="flex gap-8">
-               <a href="#" className="text-sm font-medium hover:text-slate-300 transition-colors">Privacy Policy</a>
-               <a href="#" className="text-sm font-medium hover:text-slate-300 transition-colors">Terms of Service</a>
-            </div>
-          </div>
+          <p className="text-sm font-medium">© 2026 LinkNest Inc.</p>
           
           <div className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
              <span className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)] animate-pulse" />
@@ -125,6 +141,9 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      
+      <AboutUsPopup isOpen={isAboutUsOpen} onClose={() => setIsAboutUsOpen(false)} />
+      <FAQPopup isOpen={isFAQOpen} onClose={() => setIsFAQOpen(false)} />
     </footer>
   );
 }
