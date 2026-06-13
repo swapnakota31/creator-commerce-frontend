@@ -51,37 +51,37 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-[#05040A] text-white pt-16 pb-12 overflow-hidden border-t border-white/5">
+    <footer className="relative bg-[#05040A] text-white pt-10 pb-8 overflow-hidden border-t border-white/5">
       {/* Background Accents */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-r from-[#7B2CFF]/15 to-transparent rounded-full blur-[140px] -translate-y-1/2" />
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-l from-[#A100FF]/10 to-transparent rounded-full blur-[120px] translate-y-1/2" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none" />
 
       <div className="container-shell relative z-10 px-6">
-        <div className="grid gap-16 lg:grid-cols-[1fr_2fr]">
+        <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
           {/* Brand Side */}
           <div className="flex flex-col">
-            <div className="flex items-center gap-3 group cursor-pointer mb-8">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#A100FF] to-[#7B2CFF] text-white shadow-xl shadow-purple-500/20 transition-transform group-hover:scale-110 group-hover:rotate-3">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>
+            <div className="flex items-center gap-3 group cursor-pointer mb-5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#A100FF] to-[#7B2CFF] text-white shadow-xl shadow-purple-500/20 transition-transform group-hover:scale-110 group-hover:rotate-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>
               </div>
-              <span className="text-3xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70 group-hover:to-white transition-all">LinkNest</span>
+              <span className="text-2xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70 group-hover:to-white transition-all">LinkNest</span>
             </div>
             
-            <p className="text-lg text-slate-400 max-w-sm leading-relaxed mb-10">
+            <p className="text-sm text-slate-400 max-w-sm leading-relaxed mb-7">
               Empowering the next generation of creators with premium tools to build, share, and grow their digital presence globally.
             </p>
 
             {/* Social Icons */}
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {socialLinks.map((social) => (
                 <a 
                   key={social.name} 
                   href="#" 
-                  className="h-12 w-12 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-[#7B2CFF]/40 transition-all group shadow-sm backdrop-blur-sm"
+                  className="h-9 w-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-[#7B2CFF]/40 transition-all group shadow-sm backdrop-blur-sm"
                 >
                   <span className="sr-only">{social.name}</span>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform">
                     <path d={social.icon} />
                   </svg>
                 </a>
@@ -90,53 +90,53 @@ export default function Footer() {
           </div>
 
           {/* Links Side with Vertical Dividers */}
-          <div className="flex flex-wrap gap-8">
+          <div className="flex flex-wrap gap-6">
             {footerLinks.map((column, index) => (
-              <div key={column.title} className="relative flex-1 min-w-[140px]">
+              <div key={column.title} className="relative flex-1 min-w-[130px]">
                 {/* Vertical Divider */}
                 {index > 0 && (
-                  <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10 -ml-4 hidden sm:block" />
+                  <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10 -ml-3 hidden sm:block" />
                 )}
-                <h3 className="text-sm font-bold text-white uppercase tracking-[0.2em] mb-8">{column.title}</h3>
-                <ul className="space-y-5">
+                <h3 className="text-xs font-bold text-white uppercase tracking-[0.2em] mb-5">{column.title}</h3>
+                <ul className="space-y-3.5">
                   {column.links.map((link) => (
                     <li key={link.label}>
                       {link.label === "About Us" ? (
                         <button
                           onClick={() => setIsAboutUsOpen(true)}
-                          className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
+                          className="text-sm text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
                         >
                           {link.label}
-                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
+                          <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
                         </button>
                       ) : link.label === "FAQs" ? (
                         <button
                           onClick={() => setIsFAQOpen(true)}
-                          className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
+                          className="text-sm text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
                         >
                           {link.label}
-                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
+                          <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
                         </button>
                       ) : link.label === "Privacy Policy" ? (
                         <button
                           onClick={() => setIsPrivacyPolicyOpen(true)}
-                          className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
+                          className="text-sm text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
                         >
                           {link.label}
-                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
+                          <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
                         </button>
                       ) : link.label === "Terms & Conditions" ? (
                         <button
                           onClick={() => setIsTermsConditionsOpen(true)}
-                          className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
+                          className="text-sm text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
                         >
                           {link.label}
-                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
+                          <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
                         </button>
                       ) : (
-                        <a href={link.href} className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium">
+                        <a href={link.href} className="text-sm text-slate-400 hover:text-white transition-colors relative group inline-block font-medium">
                           {link.label}
-                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
+                          <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
                         </a>
                       )}
                     </li>
@@ -148,12 +148,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-slate-500">
-          <p className="text-sm font-medium">© 2026 LinkNest. All rights reserved.</p>
+        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-500">
+          <p className="text-xs font-medium">© 2026 LinkNest. All rights reserved.</p>
           
-          <div className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-             <span className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)] animate-pulse" />
-             <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">Status: Operational</span>
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+             <span className="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)] animate-pulse" />
+             <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Status: Operational</span>
           </div>
         </div>
       </div>
