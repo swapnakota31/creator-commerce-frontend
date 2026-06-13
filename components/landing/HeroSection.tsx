@@ -90,7 +90,7 @@ export default function HeroSection({ badgeText, headline, subheadline, primaryC
 
                {/* Floating Glassmorphism Analytics Cards */}
                {/* Total Products Card (Replaced Total Sales) */}
-                <div className="absolute top-[10%] -left-[5%] sm:left-[5%] bg-white/80 backdrop-blur-xl border border-white/50 p-2.5 sm:p-3 rounded-xl shadow-[0_15px_30px_rgba(123,44,255,0.15)] animate-float-slow z-20">
+                <div className="absolute top-[10%] -left-[5%] sm:left-[5%] bg-white border border-gray-100 p-2.5 sm:p-3 rounded-xl shadow-[0_15px_30px_rgba(123,44,255,0.15)] animate-float-slow z-20">
                   <div className="flex items-center gap-2.5">
                     <div className="h-8 w-8 rounded-full bg-orange-500/15 flex items-center justify-center text-orange-600 shadow-sm border border-orange-500/10">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 8l-9-4-9 4v8l9 4 9-4V8z"/><path d="M3 8l9 4 9-4"/><path d="M12 20V12"/></svg>
@@ -103,7 +103,7 @@ export default function HeroSection({ badgeText, headline, subheadline, primaryC
                 </div>
 
               {/* Orders Card */}
-              <div className="absolute top-[40%] -right-[5%] bg-white/80 backdrop-blur-xl border border-white/50 p-2.5 sm:p-3 rounded-xl shadow-[0_15px_30px_rgba(123,44,255,0.15)] animate-float-medium z-20">
+              <div className="absolute top-[40%] -right-[5%] bg-white border border-gray-100 p-2.5 sm:p-3 rounded-xl shadow-[0_15px_30px_rgba(123,44,255,0.15)] animate-float-medium z-20">
                 <div className="flex items-center gap-2.5">
                   <div className="h-8 w-8 rounded-full bg-blue-500/15 flex items-center justify-center text-blue-600 shadow-sm border border-blue-500/10">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -116,7 +116,7 @@ export default function HeroSection({ badgeText, headline, subheadline, primaryC
               </div>
 
               {/* Clicks Card */}
-              <div className="absolute bottom-[15%] left-[15%] bg-white/80 backdrop-blur-xl border border-white/50 p-2.5 sm:p-3 rounded-xl shadow-[0_15px_30px_rgba(123,44,255,0.15)] animate-float-fast z-20">
+              <div className="absolute bottom-[15%] left-[15%] bg-white border border-gray-100 p-2.5 sm:p-3 rounded-xl shadow-[0_15px_30px_rgba(123,44,255,0.15)] animate-float-fast z-20">
                 <div className="flex items-center gap-2.5">
                   <div className="h-8 w-8 rounded-full bg-purple-500/15 flex items-center justify-center text-purple-600 shadow-sm border border-purple-500/10">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>
@@ -127,9 +127,6 @@ export default function HeroSection({ badgeText, headline, subheadline, primaryC
                   </div>
                 </div>
               </div>
-
-              {/* Subtle background glow */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-gradient-to-tr from-[#7B2CFF]/10 to-transparent rounded-full blur-[100px] -z-10" />
             </div>
           </div>
 

@@ -6,9 +6,9 @@ function BrandCard({ brand }: { brand: any }) {
   const [imgStatus, setImgStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
 
   return (
-    <div className={`flex-none flex h-28 w-52 items-center justify-center rounded-[24px] border border-white/60 bg-white backdrop-blur-xl p-6 shadow-[0_3px_16px_rgba(0,0,0,0.03),0_10px_32px_rgba(0,0,0,0.04)] transition-all duration-500 hover:shadow-[0_16px_64px_rgba(0,0,0,0.12)] hover:-translate-y-2 hover:scale-[1.01] ${brand.border} group overflow-hidden relative`}>
+    <div className={`flex-none flex h-28 w-52 items-center justify-center rounded-[24px] border border-gray-100 bg-white p-6 shadow-[0_3px_16px_rgba(0,0,0,0.03),0_10px_32px_rgba(0,0,0,0.04)] transition-all duration-500 hover:shadow-[0_16px_64px_rgba(0,0,0,0.12)] hover:-translate-y-2 hover:scale-[1.01] ${brand.border} group overflow-hidden relative`}>
       {/* Dynamic Brand Glow - Much more vibrant */}
-      <div className={`absolute -inset-4 ${brand.glow} opacity-0 group-hover:opacity-25 blur-[32px] transition-all duration-700 pointer-events-none`} />
+      <div className={`absolute -inset-4 ${brand.glow} opacity-0 group-hover:opacity-25 transition-all duration-700 pointer-events-none`} />
       
       {/* Internal Reflection Effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -21,7 +21,7 @@ function BrandCard({ brand }: { brand: any }) {
             alt={brand.name} 
             onLoad={() => setImgStatus('loaded')}
             onError={() => setImgStatus('error')}
-            className={`max-w-[80%] max-h-[70%] object-contain transition-all duration-700 group-hover:scale-105 group-hover:rotate-1 filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.07)] ${imgStatus === 'loaded' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 absolute'}`}
+            className={`max-w-[80%] max-h-[70%] object-contain transition-all duration-700 group-hover:scale-105 group-hover:rotate-1 drop-shadow-[0_6px_12px_rgba(0,0,0,0.07)] ${imgStatus === 'loaded' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 absolute'}`}
           />
         )}
 

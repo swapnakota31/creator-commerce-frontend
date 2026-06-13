@@ -53,8 +53,8 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#05040A] text-white pt-10 pb-8 overflow-hidden border-t border-white/5">
       {/* Background Accents */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-r from-[#7B2CFF]/15 to-transparent rounded-full blur-[140px] -translate-y-1/2" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-l from-[#A100FF]/10 to-transparent rounded-full blur-[120px] translate-y-1/2" />
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-r from-[#7B2CFF]/15 to-transparent rounded-full -translate-y-1/2" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-l from-[#A100FF]/10 to-transparent rounded-full translate-y-1/2" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none" />
 
       <div className="container-shell relative z-10 px-6">
@@ -78,7 +78,7 @@ export default function Footer() {
                 <a 
                   key={social.name} 
                   href="#" 
-                  className="h-9 w-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-[#7B2CFF]/40 transition-all group shadow-sm backdrop-blur-sm"
+                  className="h-9 w-9 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 hover:border-[#7B2CFF]/40 transition-all group shadow-sm"
                 >
                   <span className="sr-only">{social.name}</span>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:scale-110 transition-transform">
@@ -151,7 +151,7 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-500">
           <p className="text-xs font-medium">© 2026 LinkNest. All rights reserved.</p>
           
-          <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
              <span className="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)] animate-pulse" />
              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Status: Operational</span>
           </div>

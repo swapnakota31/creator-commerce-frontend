@@ -199,7 +199,7 @@ export default function AnalyticsDashboardSection() {
                     Get Started Free
                   </button>
                 </div>
-                <div className="absolute -right-3 -bottom-3 w-28 h-28 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all" />
+                <div className="absolute -right-3 -bottom-3 w-28 h-28 bg-white/10 rounded-full group-hover:bg-white/20 transition-all" />
               </div>
             </div>
           </div>
