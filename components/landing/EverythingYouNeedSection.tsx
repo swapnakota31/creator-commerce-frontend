@@ -79,11 +79,20 @@ export default function EverythingYouNeedSection() {
   const next = () => scrollToIndex((activeIndex + 1) % features.length);
   const prev = () => scrollToIndex((activeIndex - 1 + features.length) % features.length);
 
+  // Auto-advance carousel every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(next, 4000);
+    return () => clearInterval(interval);
+  }, [activeIndex]);
+
   return (
     <section id="features-grid" className="py-12 bg-white overflow-hidden relative">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-[#E9D5FF]/15 blur-[80px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#C084FC]/5 blur-[60px] rounded-full pointer-events-none" />
+      {/* Enhanced Background Decorative Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-gradient-to-br from-[#E9D5FF]/30 to-[#C084FC]/15 blur-[100px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-gradient-to-br from-[#C084FC]/15 to-[#A855F7]/10 blur-[120px] rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-[#F5F3FF]/20 to-transparent blur-[150px] rounded-full" />
+      </div>
 
       <div className="container-shell relative z-10">
         {/* Header - Reduced margin bottom */}
@@ -125,11 +134,12 @@ export default function EverythingYouNeedSection() {
               return (
                 <div 
                   key={feature.id}
+                  onClick={() => setActiveIndex(index)}
                   className={`
-                    flex-none w-[260px] sm:w-[300px] rounded-[32px] p-7 border transition-all duration-700 ease-out relative
+                    flex-none w-[260px] sm:w-[300px] rounded-[32px] p-7 border transition-all duration-700 ease-out relative cursor-pointer
                     ${isActive 
-                      ? "bg-white border-[#C084FC]/30 shadow-[0_15px_40px_rgba(168,85,247,0.1)] scale-105 z-20" 
-                      : "bg-white/40 border-[#E9D5FF]/40 shadow-none scale-90 opacity-20 blur-[0.3px] z-10 hidden sm:block"
+                      ? "bg-white border-[#C084FC]/30 shadow-[0_15px_40px_rgba(168,85,247,0.15)] scale-105 z-20" 
+                      : "bg-white/60 border-[#E9D5FF]/40 shadow-none scale-90 opacity-30 blur-[0.3px] z-10 hidden sm:block hover:opacity-50 hover:blur-0"
                     }
                   `}
                 >
@@ -169,7 +179,7 @@ export default function EverythingYouNeedSection() {
                   
                   {/* Active Card Glow */}
                   {isActive && (
-                    <div className="absolute -inset-[1px] rounded-[32px] bg-gradient-to-br from-[#A855F7]/10 via-transparent to-[#C084FC]/10 pointer-events-none" />
+                    <div className="absolute -inset-[1px] rounded-[32px] bg-gradient-to-br from-[#A855F7]/15 via-transparent to-[#C084FC]/15 pointer-events-none" />
                   )}
                 </div>
               );

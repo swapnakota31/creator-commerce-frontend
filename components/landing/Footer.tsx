@@ -3,18 +3,20 @@
 import React, { useState } from 'react';
 import AboutUsPopup from './AboutUsPopup';
 import FAQPopup from './FAQPopup';
+import PrivacyPolicyPopup from './PrivacyPolicyPopup';
+import TermsConditionsPopup from './TermsConditionsPopup';
 
 export default function Footer() {
   const [isAboutUsOpen, setIsAboutUsOpen] = useState(false);
   const [isFAQOpen, setIsFAQOpen] = useState(false);
+  const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false);
+  const [isTermsConditionsOpen, setIsTermsConditionsOpen] = useState(false);
   const footerLinks = [
     {
       title: "Company",
       links: [
         { label: "About Us", href: "#" },
-        { label: "Careers", href: "#" },
-        { label: "Contact Us", href: "#" },
-        { label: "Press", href: "#" }
+        { label: "Contact Us", href: "#" }
       ],
     },
     {
@@ -37,8 +39,7 @@ export default function Footer() {
       title: "Legal",
       links: [
         { label: "Privacy Policy", href: "#" },
-        { label: "Terms & Conditions", href: "#" },
-        { label: "Site map", href: "#" }
+        { label: "Terms & Conditions", href: "#" }
       ],
     },
   ];
@@ -117,6 +118,22 @@ export default function Footer() {
                           {link.label}
                           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
                         </button>
+                      ) : link.label === "Privacy Policy" ? (
+                        <button
+                          onClick={() => setIsPrivacyPolicyOpen(true)}
+                          className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
+                        >
+                          {link.label}
+                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
+                        </button>
+                      ) : link.label === "Terms & Conditions" ? (
+                        <button
+                          onClick={() => setIsTermsConditionsOpen(true)}
+                          className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium text-left"
+                        >
+                          {link.label}
+                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] transition-all group-hover:w-full" />
+                        </button>
                       ) : (
                         <a href={link.href} className="text-[15px] text-slate-400 hover:text-white transition-colors relative group inline-block font-medium">
                           {link.label}
@@ -144,6 +161,8 @@ export default function Footer() {
       
       <AboutUsPopup isOpen={isAboutUsOpen} onClose={() => setIsAboutUsOpen(false)} />
       <FAQPopup isOpen={isFAQOpen} onClose={() => setIsFAQOpen(false)} />
+      <PrivacyPolicyPopup isOpen={isPrivacyPolicyOpen} onClose={() => setIsPrivacyPolicyOpen(false)} />
+      <TermsConditionsPopup isOpen={isTermsConditionsOpen} onClose={() => setIsTermsConditionsOpen(false)} />
     </footer>
   );
 }

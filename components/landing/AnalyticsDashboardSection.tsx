@@ -194,8 +194,7 @@ export default function AnalyticsDashboardSection() {
 
               <div className="mt-12 p-6 rounded-[24px] bg-gradient-to-br from-[#A100FF] to-[#7B2CFF] text-white relative overflow-hidden group cursor-pointer">
                 <div className="relative z-10">
-                  <h4 className="text-lg font-bold mb-1">Ready to start?</h4>
-                  <p className="text-white/80 text-sm mb-4">Join 50,000+ creators today.</p>
+                  <h4 className="text-lg font-bold mb-4">Ready to start?</h4>
                   <button className="bg-white text-[#7B2CFF] px-6 py-2.5 rounded-xl text-sm font-black hover:shadow-lg transition-all active:scale-95">
                     Get Started Free
                   </button>
