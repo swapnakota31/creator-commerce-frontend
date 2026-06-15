@@ -1,13 +1,24 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { ChevronLeft, ChevronRight, Zap } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Zap,
+} from "lucide-react";
+
 import { useStore } from "@/lib/StoreContext";
 
-export default function RecentlyAdded() {
+type Props = {
+  username: string;
+};
+
+export default function RecentlyAdded({ username }: Props) {
   const { recentProducts } = useStore();
+
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -41,13 +52,19 @@ export default function RecentlyAdded() {
 
   useEffect(() => {
     if (!emblaApi) return;
-    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
     emblaApi.on("select", onSelect);
     onSelect();
-    return () => { emblaApi.off("select", onSelect); };
+
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
   }, [emblaApi]);
 
-  // Re-init when products change (new product added)
   useEffect(() => {
     if (emblaApi) {
       emblaApi.reInit();
@@ -58,23 +75,22 @@ export default function RecentlyAdded() {
 
   return (
     <section className="space-y-4">
-      {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <div className="flex items-center gap-2">
             <h2 className="text-2xl font-bold text-slate-900">
-              Recently Added
+              Recently Shared
             </h2>
-            {/* Live indicator */}
+
             <span
               className="
               inline-flex
               items-center
               gap-1.5
               rounded-full
-              bg-emerald-50
               border
               border-emerald-100
+              bg-emerald-50
               px-2.5
               py-1
               text-[11px]
@@ -89,8 +105,9 @@ export default function RecentlyAdded() {
               Live
             </span>
           </div>
+
           <p className="mt-1 text-sm text-slate-500">
-            Fresh recommendations added this week.
+            Recommendations recently shared by this creator.
           </p>
         </div>
 
@@ -110,9 +127,9 @@ export default function RecentlyAdded() {
             text-slate-600
             transition-all
             duration-300
+            hover:border-violet-600
             hover:bg-violet-600
             hover:text-white
-            hover:border-violet-600
             "
           >
             <ChevronLeft size={16} />
@@ -133,9 +150,9 @@ export default function RecentlyAdded() {
             text-slate-600
             transition-all
             duration-300
+            hover:border-violet-600
             hover:bg-violet-600
             hover:text-white
-            hover:border-violet-600
             "
           >
             <ChevronRight size={16} />
@@ -143,7 +160,6 @@ export default function RecentlyAdded() {
         </div>
       </div>
 
-      {/* Carousel */}
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {recentProducts.map((product) => (
@@ -151,9 +167,9 @@ export default function RecentlyAdded() {
               key={product.id}
               className="
               min-w-full
+              px-2
               md:min-w-[48%]
               lg:min-w-[33.33%]
-              px-2
               "
             >
               <div
@@ -171,7 +187,6 @@ export default function RecentlyAdded() {
                 hover:shadow-[0_12px_32px_rgba(124,58,237,0.14)]
                 "
               >
-                {/* Image */}
                 <div className="relative overflow-hidden">
                   <img
                     src={product.image}
@@ -185,13 +200,13 @@ export default function RecentlyAdded() {
                     group-hover:scale-105
                     "
                   />
-                  {/* NEW badge */}
-                  {product.isNew && (
+
+                  {product.isNew ? (
                     <span
                       className="
                       absolute
-                      top-3
                       left-3
+                      top-3
                       inline-flex
                       items-center
                       gap-1
@@ -208,36 +223,47 @@ export default function RecentlyAdded() {
                       "
                     >
                       <Zap size={10} fill="white" />
-                      JUST ADDED
+                      RECENT PICK
                     </span>
-                  )}
-                  {!product.isNew && (
+                  ) : (
                     <span
                       className="
                       absolute
-                      top-3
                       left-3
+                      top-3
                       rounded-full
+                      border
+                      border-violet-100
                       bg-violet-50
                       px-2.5
                       py-1
                       text-[11px]
                       font-semibold
                       text-violet-600
-                      border
-                      border-violet-100
                       "
                     >
-                      NEW
+                      CREATOR PICK
                     </span>
                   )}
                 </div>
 
-                {/* Content */}
                 <div className="flex h-[126px] flex-col p-3.5">
-                  <h3 className="text-sm font-semibold text-slate-900 line-clamp-1">
+                  <h3 className="line-clamp-1 text-sm font-semibold text-slate-900">
                     {product.title}
                   </h3>
+
+                  <p
+                    className="
+                    mt-2
+                    text-[10px]
+                    font-bold
+                    uppercase
+                    tracking-wider
+                    text-violet-600
+                    "
+                  >
+                    Why I Shared It
+                  </p>
 
                   <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-500">
                     {product.creatorNote}
@@ -248,8 +274,8 @@ export default function RecentlyAdded() {
                       via {product.affiliatePlatform}
                     </span>
 
-                    <a
-                      href={product.affiliateUrl}
+                    <Link
+                      href={`/store/${username}/products/${product.id}?from=recent`}
                       className="
                       rounded-full
                       bg-slate-100
@@ -264,8 +290,8 @@ export default function RecentlyAdded() {
                       group-hover:text-white
                       "
                     >
-                      View →
-                    </a>
+                      View Pick →
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -274,7 +300,6 @@ export default function RecentlyAdded() {
         </div>
       </div>
 
-      {/* Dots */}
       <div className="flex justify-center gap-1.5">
         {recentProducts.map((_, index) => (
           <button
