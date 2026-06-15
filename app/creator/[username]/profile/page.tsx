@@ -45,7 +45,7 @@ export default function CreatorProfilePage({ params }: CreatorProfilePageProps) 
           />
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-8 xl:sticky xl:top-8 h-fit">
           <div className="bg-[color:var(--color-card)] p-8 rounded-[24px] border border-[color:var(--color-border)] shadow-sm">
             <div className="flex items-center justify-between mb-4">
               <div>

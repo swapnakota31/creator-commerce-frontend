@@ -182,7 +182,7 @@ function HeroSection({
     <motion.section
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
-      className="overflow-hidden rounded-[32px] border border-white/60 bg-white/75 p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/70 sm:p-8"
+      className="overflow-hidden rounded-[32px] border border-[color:var(--color-border)] bg-[color:var(--color-card)] p-6 shadow-sm sm:p-8"
     >
       <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
         <div>
@@ -209,7 +209,7 @@ function ActionButton({ children, isActive = false }: { children: React.ReactNod
         'inline-flex h-10 items-center gap-2 rounded-full px-4 text-[13px] font-semibold transition-all',
         isActive
           ? 'bg-foreground text-background shadow-sm'
-          : 'border border-[color:var(--color-border)] bg-background/70 text-muted hover:border-[#7B2CFF]/30 hover:text-foreground'
+          : 'border border-[color:var(--color-border)] bg-[color:var(--color-card)] text-muted hover:border-[#7B2CFF]/30 hover:text-foreground'
       )}
     >
       {children}
@@ -219,7 +219,7 @@ function ActionButton({ children, isActive = false }: { children: React.ReactNod
 
 function SectionShell({ title, children, action }: { title: string; children: React.ReactNode; action?: React.ReactNode }) {
   return (
-    <section className="rounded-[24px] border border-white/60 bg-white/72 p-5 shadow-[0_18px_60px_rgba(15,23,42,0.06)] backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/68 sm:p-6">
+    <section className="rounded-[24px] border border-[color:var(--color-border)] bg-[color:var(--color-card)] p-5 shadow-sm sm:p-6">
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-[22px] font-semibold tracking-tight text-foreground">{title}</h2>
         {action}
@@ -245,7 +245,7 @@ function MetricCard({ metric, featured = false }: { metric: KpiCard; featured?: 
     <motion.div
       whileHover={{ y: -3 }}
       className={cn(
-        'group relative overflow-hidden rounded-[24px] border border-white/60 bg-white/78 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.06)] transition-all dark:border-white/10 dark:bg-zinc-950/70',
+        'group relative overflow-hidden rounded-[24px] border border-[color:var(--color-border)] bg-[color:var(--color-card)] p-5 shadow-sm transition-all',
         featured && 'md:col-span-2'
       )}
     >
@@ -255,7 +255,7 @@ function MetricCard({ metric, featured = false }: { metric: KpiCard; featured?: 
           <p className={cn('font-bold tracking-tight text-foreground', featured ? 'text-[46px] leading-none' : 'text-[40px] leading-none')}>{metric.value}</p>
           <p className="mt-3 text-[14px] font-medium text-muted">{metric.label}</p>
         </div>
-        <div className="rounded-2xl bg-background/70 p-2.5 text-muted transition-colors group-hover:text-[#7B2CFF]">
+        <div className="rounded-2xl bg-[color:var(--color-background)] p-2.5 text-muted transition-colors group-hover:text-[#7B2CFF]">
           <Icon size={18} />
         </div>
       </div>
@@ -295,7 +295,7 @@ function AreaChart({ values }: { values: number[] }) {
   const areaPath = `${linePath} L ${points[points.length - 1].x} ${height - bottom} L ${points[0].x} ${height - bottom} Z`;
 
   return (
-    <div className="overflow-hidden rounded-[24px] bg-gradient-to-b from-background/80 to-background/35 p-3">
+    <div className="overflow-hidden rounded-[24px] border border-[color:var(--color-border)] bg-[color:var(--color-background)] p-4">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3 px-2">
         <div className="flex items-center gap-3 text-[12px] font-semibold text-muted">
           <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-[#7B2CFF]" /> Visitors</span>
@@ -356,7 +356,7 @@ function DonutDistribution({ segments }: { segments: { label: string; value: num
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {segments.map((segment) => (
-          <div key={segment.label} className="group flex items-center justify-between rounded-2xl bg-background/55 px-4 py-3 transition-colors hover:bg-background">
+          <div key={segment.label} className="group flex items-center justify-between rounded-2xl border border-[color:var(--color-border)]/50 bg-[color:var(--color-background)]/40 px-4 py-3 transition-colors hover:bg-[color:var(--color-background)] hover:border-[color:var(--color-border)]">
             <div className="flex items-center gap-3">
               <span className="h-3 w-3 rounded-full shadow-sm" style={{ backgroundColor: segment.color }} />
               <span className="text-sm font-medium text-foreground">{segment.label}</span>
@@ -409,7 +409,7 @@ export function CreatorAnalyticsOverview({ username }: AnalyticsSectionProps) {
         metric="Your storefront generated 84.2K visitors this month"
         detail="+18.4% compared to last month"
       >
-        <div className="flex items-center gap-1 rounded-full border border-[color:var(--color-border)] bg-background/70 p-1">
+        <div className="flex items-center gap-1 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-background)] p-1">
           {(['daily', 'weekly', 'monthly'] as const).map((option) => (
             <button
               key={option}
@@ -438,8 +438,8 @@ export function CreatorAnalyticsOverview({ username }: AnalyticsSectionProps) {
         <SectionShell title="Top Products">
           <div className="space-y-1">
             {topProducts.map((product, index) => (
-              <div key={product.name} className="grid grid-cols-[32px_1fr] gap-4 rounded-2xl px-2 py-3 transition-colors hover:bg-background/70 sm:grid-cols-[32px_1fr_90px_110px_70px] sm:items-center">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-background text-sm font-bold text-muted">{index + 1}</span>
+              <div key={product.name} className="grid grid-cols-[32px_1fr] gap-4 rounded-2xl px-2 py-3 transition-colors hover:bg-[color:var(--color-background)] sm:grid-cols-[32px_1fr_90px_110px_70px] sm:items-center">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[color:var(--color-background)] text-sm font-bold text-muted">{index + 1}</span>
                 <div>
                   <p className="font-semibold text-foreground">{product.name}</p>
                   <p className="text-[12px] text-muted sm:hidden">{product.views} views, {product.clicks} clicks, {product.ctr} CTR</p>
@@ -489,7 +489,7 @@ export function CreatorPlatformAnalytics({ username }: AnalyticsSectionProps) {
       <SectionShell title="Platform Summary">
         <div className="grid gap-4 lg:grid-cols-3">
           {platformRows.slice(0, 3).map((row) => (
-            <motion.div key={row.platform} whileHover={{ y: -3 }} className="rounded-[24px] bg-background/62 p-5 shadow-[0_16px_45px_rgba(15,23,42,0.05)]">
+            <motion.div key={row.platform} whileHover={{ y: -3 }} className="rounded-[24px] border border-[color:var(--color-border)] bg-[color:var(--color-background)] p-5 shadow-sm">
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-lg font-semibold text-foreground">{row.platform}</p>
@@ -512,7 +512,7 @@ export function CreatorPlatformAnalytics({ username }: AnalyticsSectionProps) {
           {platformInsights.map((insight) => {
             const Icon = insight.icon;
             return (
-              <div key={insight.label} className="rounded-[24px] bg-background/62 p-5 transition-colors hover:bg-background">
+              <div key={insight.label} className="rounded-[24px] border border-[color:var(--color-border)] bg-[color:var(--color-background)]/50 p-5 transition-colors hover:bg-[color:var(--color-background)]">
                 <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-2xl bg-[#7B2CFF]/10 text-[#7B2CFF]">
                   <Icon size={18} />
                 </div>
@@ -569,7 +569,7 @@ export function CreatorProductAnalytics({ username }: AnalyticsSectionProps) {
         title="Product Leaderboard"
         action={
           <div className="flex flex-wrap items-center gap-2">
-            <div className="flex h-10 items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-background/70 px-4">
+            <div className="flex h-10 items-center gap-2 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-background)] px-4">
               <Search size={14} className="text-muted" />
               <input
                 value={query}
@@ -587,7 +587,7 @@ export function CreatorProductAnalytics({ username }: AnalyticsSectionProps) {
             <button
               key={item}
               onClick={() => setFilter(item)}
-              className={cn('rounded-full px-4 py-2 text-[13px] font-semibold transition-colors', filter === item ? 'bg-foreground text-background' : 'bg-background/60 text-muted hover:text-foreground')}
+              className={cn('rounded-full px-4 py-2 text-[13px] font-semibold transition-colors', filter === item ? 'bg-foreground text-background' : 'bg-[color:var(--color-background)] text-muted hover:bg-[color:var(--color-background)]/85 hover:text-foreground')}
             >
               {item}
             </button>
@@ -596,7 +596,7 @@ export function CreatorProductAnalytics({ username }: AnalyticsSectionProps) {
             <button
               key={item}
               onClick={() => setSortBy(item)}
-              className={cn('rounded-full px-4 py-2 text-[13px] font-semibold transition-colors', sortBy === item ? 'bg-[#7B2CFF] text-white' : 'bg-background/60 text-muted hover:text-foreground')}
+              className={cn('rounded-full px-4 py-2 text-[13px] font-semibold transition-colors', sortBy === item ? 'bg-[#7B2CFF] text-white' : 'bg-[color:var(--color-background)] text-muted hover:bg-[color:var(--color-background)]/85 hover:text-foreground')}
             >
               {item.toUpperCase()}
             </button>
@@ -605,7 +605,7 @@ export function CreatorProductAnalytics({ username }: AnalyticsSectionProps) {
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {visibleProducts.map((product) => (
-            <motion.article key={product.name} whileHover={{ y: -4 }} className="overflow-hidden rounded-[24px] bg-background/68 shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
+            <motion.article key={product.name} whileHover={{ y: -4 }} className="overflow-hidden rounded-[24px] border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-sm">
               <div className="flex aspect-[1.8] items-end justify-between bg-gradient-to-br from-[#7B2CFF]/18 via-[#06B6D4]/12 to-transparent p-5">
                 <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-white/70 text-center text-[12px] font-bold text-[#7B2CFF] shadow-sm dark:bg-zinc-950/70">
                   {product.image}
@@ -643,7 +643,7 @@ export function CreatorProductAnalytics({ username }: AnalyticsSectionProps) {
       <SectionShell
         title="Product Performance"
         action={
-          <div className="flex rounded-full bg-background/70 p-1">
+          <div className="flex rounded-full bg-[color:var(--color-background)] p-1">
             {productTrendWindows.map((option) => (
               <button
                 key={option.value}
@@ -658,10 +658,10 @@ export function CreatorProductAnalytics({ username }: AnalyticsSectionProps) {
       >
         <div className="grid gap-6 lg:grid-cols-[1fr_280px] lg:items-center">
           <ProductBars products={visibleProducts} />
-          <div className="rounded-[24px] bg-gradient-to-br from-[#7B2CFF]/12 to-[#06B6D4]/12 p-5">
-            <p className="text-[13px] font-medium text-muted">Selected window</p>
+          <div className="rounded-[24px] border border-[color:var(--color-border)] bg-gradient-to-br from-[#7B2CFF]/10 to-[#06B6D4]/10 p-5">
+            <p className="text-[13px] font-semibold text-[#7B2CFF] dark:text-muted">Selected window</p>
             <p className="mt-2 text-[40px] font-bold tracking-tight text-foreground">{trendWindow === '7d' ? '+8.4%' : trendWindow === '30d' ? '+18.1%' : '+31.6%'}</p>
-            <p className="mt-2 text-[13px] leading-5 text-muted">Product views across the active leaderboard.</p>
+            <p className="mt-2 text-[13px] leading-5 text-foreground/80 dark:text-muted">Product views across the active leaderboard.</p>
           </div>
         </div>
       </SectionShell>
@@ -671,7 +671,7 @@ export function CreatorProductAnalytics({ username }: AnalyticsSectionProps) {
           {productInsights.map((insight) => {
             const Icon = insight.icon;
             return (
-              <div key={insight.title} className="flex items-start gap-4 rounded-[24px] bg-background/62 p-5">
+              <div key={insight.title} className="flex items-start gap-4 rounded-[24px] border border-[color:var(--color-border)] bg-[color:var(--color-background)]/50 p-5">
                 <div className="rounded-2xl bg-[#06B6D4]/10 p-2.5 text-[#0891B2]">
                   <Icon size={18} />
                 </div>

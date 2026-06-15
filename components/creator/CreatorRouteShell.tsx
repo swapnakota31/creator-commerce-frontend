@@ -12,10 +12,10 @@ type CreatorRouteShellProps = {
 
 export default function CreatorRouteShell({ username, sectionTitle, children }: CreatorRouteShellProps) {
   return (
-    <div className="flex bg-[color:var(--color-background)] min-h-screen text-foreground selection:bg-primary/30">
+    <div className="flex w-full max-w-full bg-[color:var(--color-background)] min-h-screen text-foreground selection:bg-primary/30">
       <Sidebar />
 
-      <main className="flex-1 lg:pl-[236px] transition-all duration-300">
+      <main className="flex-1 min-w-0 lg:pl-[236px] transition-all duration-300">
         <div className="max-w-[1320px] mx-auto px-4 md:px-6 py-6 lg:py-8">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
