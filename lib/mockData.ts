@@ -15,6 +15,13 @@ export const creator = {
   tagline: "Products I genuinely use and recommend.",
 
   creatorCategory: "Productivity Creator",
+
+  // TODO: replace with real social links from users table in backend
+  socialLinks: {
+    instagram: "https://instagram.com/priyafinds",
+    youtube: "https://youtube.com/@priyafinds",
+    twitter: "https://twitter.com/priyafinds",
+  },
 };
 
 export const products: Product[] = [
