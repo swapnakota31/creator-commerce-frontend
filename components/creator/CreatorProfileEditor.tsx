@@ -236,37 +236,20 @@ export default function CreatorProfileEditor({ username }: CreatorProfileEditorP
             </div>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
-            <div className="space-y-4 lg:col-span-2">
-              <p className="max-w-2xl text-lg leading-relaxed text-foreground/80">{form.bio}</p>
+          <div className="mt-8 space-y-4">
+            <p className="max-w-2xl text-lg leading-relaxed text-foreground/80">{form.bio}</p>
 
-              <div className="flex flex-wrap gap-4 text-muted">
-                <div className="flex items-center gap-1.5">
-                  <MapPin size={16} />
-                  <span className="text-sm font-medium">{form.location}</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <LinkIcon size={16} />
-                  <a href="#" className="text-sm font-medium transition-colors hover:text-primary">
-                    {form.website}
-                  </a>
-                </div>
+            <div className="flex flex-wrap gap-4 text-muted">
+              <div className="flex items-center gap-1.5">
+                <MapPin size={16} />
+                <span className="text-sm font-medium">{form.location}</span>
               </div>
-            </div>
-
-            <div className="flex items-end gap-3 lg:justify-end">
-              {[Camera, PenLine, Globe, Plus].map((Icon, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  onClick={() => setIsEditorOpen(true)}
-                  className={cn(
-                    'rounded-xl border border-transparent bg-muted/30 p-3 transition-all duration-300 hover:border-primary/20 hover:bg-primary/10 hover:text-primary'
-                  )}
-                >
-                  <Icon size={20} />
-                </button>
-              ))}
+              <div className="flex items-center gap-1.5">
+                <LinkIcon size={16} />
+                <a href="#" className="text-sm font-medium transition-colors hover:text-primary">
+                  {form.website}
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -287,223 +270,122 @@ export default function CreatorProfileEditor({ username }: CreatorProfileEditorP
               exit={{ opacity: 0, y: 24, scale: 0.98 }}
               transition={{ duration: 0.25 }}
               onClick={(event) => event.stopPropagation()}
-              className="w-full max-w-6xl max-h-[90vh] overflow-hidden rounded-[28px] border border-white/10 bg-[color:var(--color-card)] shadow-2xl"
+              className="w-full max-w-xl max-h-[90vh] flex flex-col overflow-hidden rounded-[28px] border border-[color:var(--color-border)] bg-[color:var(--color-card)] shadow-2xl"
             >
-              <div className="grid h-full grid-cols-1 lg:grid-cols-[1fr_1.05fr]">
-                <div className="relative overflow-hidden bg-gradient-to-br from-[#A100FF] via-[#7B2CFF] to-[#3A1F8A] p-6 text-white lg:sticky lg:top-0 lg:h-[90vh] md:p-8">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_white,_transparent_55%)] opacity-20" />
-
-                  <div className="relative flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/70">Profile Studio</p>
-                      <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Shape your creator identity</h2>
-                      <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 md:text-base">
-                        Edit your public presence with a live creative preview, not a boring settings sheet.
-                      </p>
-                    </div>
+              <div className="border-b border-[color:var(--color-border)] px-6 py-5 md:px-8">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.25em] text-muted">Edit profile</p>
+                    <h3 className="mt-2 text-xl font-bold">Update your public profile</h3>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {saved ? (
+                      <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600">
+                        <Check size={14} /> Saved
+                      </span>
+                    ) : null}
                     <button
                       type="button"
                       onClick={() => setIsEditorOpen(false)}
-                      className="rounded-full border border-white/20 bg-white/10 p-2 text-white backdrop-blur-md transition hover:bg-white/20"
+                      className="rounded-full border border-[color:var(--color-border)] bg-background p-2 text-foreground transition hover:bg-muted/50 cursor-pointer"
                     >
-                      <X size={18} />
+                      <X size={16} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6 md:px-8">
+                <div className="space-y-6">
+                  <label className="block">
+                    <span className="text-sm font-semibold text-foreground">Display name</span>
+                    <input
+                      value={form.name}
+                      onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+                      className="mt-2 w-full rounded-2xl border border-[color:var(--color-border)] bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+                    />
+                  </label>
+
+                  <label className="block">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="text-sm font-semibold text-foreground">Username</span>
+                      <span className="text-xs font-medium text-muted">This updates the profile URL</span>
+                    </div>
+                    <div className="mt-2 flex rounded-2xl border border-[color:var(--color-border)] bg-background px-4 py-3 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+                      <span className="text-sm text-muted">@</span>
+                      <input
+                        value={form.username}
+                        onChange={(event) => setForm((current) => ({ ...current, username: event.target.value }))}
+                        className="w-full bg-transparent pl-1 text-sm outline-none"
+                      />
+                    </div>
+                    <p className="mt-2 text-xs text-muted">Preview: /creator/{previewSlug}/profile</p>
+                  </label>
+
+                  <label className="block">
+                    <span className="text-sm font-semibold text-foreground">Bio</span>
+                    <textarea
+                      value={form.bio}
+                      onChange={(event) => setForm((current) => ({ ...current, bio: event.target.value }))}
+                      rows={4}
+                      className="mt-2 w-full rounded-2xl border border-[color:var(--color-border)] bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+                    />
+                  </label>
+
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <label className="block">
+                      <span className="text-sm font-semibold text-foreground">Location</span>
+                      <input
+                        value={form.location}
+                        onChange={(event) => setForm((current) => ({ ...current, location: event.target.value }))}
+                        className="mt-2 w-full rounded-2xl border border-[color:var(--color-border)] bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="text-sm font-semibold text-foreground">Website</span>
+                      <input
+                        value={form.website}
+                        onChange={(event) => setForm((current) => ({ ...current, website: event.target.value }))}
+                        className="mt-2 w-full rounded-2xl border border-[color:var(--color-border)] bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+                      />
+                    </label>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                    <button
+                      type="button"
+                      onClick={() => bannerUploadRef.current?.click()}
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[color:var(--color-border)] px-4 py-3 text-sm font-semibold transition hover:bg-muted/40 cursor-pointer"
+                    >
+                      <Upload size={16} /> Upload banner
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => brandKitUploadRef.current?.click()}
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[color:var(--color-border)] px-4 py-3 text-sm font-semibold transition hover:bg-muted/40 cursor-pointer"
+                    >
+                      <PenLine size={16} /> Upload brand kit
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleSave}
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition hover:scale-[1.01] cursor-pointer"
+                    >
+                      <Save size={16} /> Save changes
                     </button>
                   </div>
 
-                  <div className="mt-8 grid grid-cols-2 gap-4 text-white/85">
-                    <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
-                      <p className="text-xs uppercase tracking-[0.2em] text-white/60">Current route</p>
-                      <p className="mt-2 text-sm font-semibold">{profileUrl}</p>
-                    </div>
-                    <div className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
-                      <p className="text-xs uppercase tracking-[0.2em] text-white/60">Live username preview</p>
-                      <p className="mt-2 text-sm font-semibold">/creator/{previewSlug}/profile</p>
-                    </div>
-                  </div>
+                  <input ref={bannerUploadRef} type="file" accept="image/*" className="hidden" onChange={handleBannerUpload} />
+                  <input ref={brandKitUploadRef} type="file" accept="image/*,.pdf,.zip" className="hidden" onChange={handleBrandKitUpload} />
 
-                  <div className="mt-8 rounded-[26px] border border-white/15 bg-white/10 p-5 backdrop-blur-xl">
+                  <div className="rounded-[22px] border border-dashed border-[color:var(--color-border)] bg-muted/20 p-4">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15">
-                        <Sparkles size={20} />
+                      <div className="rounded-2xl bg-white dark:bg-zinc-800 p-2 shadow-sm">
+                        <Plus size={16} className="text-primary" />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold">Creative preview</p>
-                        <p className="text-xs text-white/70">A compact brand studio with live route awareness.</p>
-                      </div>
-                    </div>
-
-                    <div className="mt-5 rounded-[22px] border border-white/10 bg-black/15 p-4">
-                      <div className="flex items-center justify-between gap-4">
-                        <div>
-                          <p className="text-xs uppercase tracking-[0.2em] text-white/55">Banner style</p>
-                          <p className="mt-1 font-semibold">{form.bannerStyle}</p>
-                        </div>
-                        <div className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">Live</div>
-                      </div>
-                      <div
-                        className={cn(
-                          'mt-4 h-28 rounded-[20px] ring-1 ring-white/10',
-                          bannerImageUrl ? 'bg-center bg-cover' : selectedBanner.accent
-                        )}
-                        style={bannerImageUrl ? { backgroundImage: `url(${bannerImageUrl})` } : undefined}
-                      />
-                      <p className="mt-3 text-xs leading-relaxed text-white/75">{selectedBanner.description}</p>
-                    </div>
-
-                    <div className="mt-6 grid grid-cols-1 gap-3 text-sm text-white/75">
-                      <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-md">
-                        <p className="text-xs uppercase tracking-[0.2em] text-white/55">Brand kit</p>
-                        <p className="mt-1 font-semibold text-white">{brandKitName ?? 'No brand kit uploaded'}</p>
-                      </div>
-                      <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-md">
-                        <p className="text-xs uppercase tracking-[0.2em] text-white/55">Headline preview</p>
-                        <p className="mt-1 text-white/85">Professional, trustworthy, creator-first.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative flex min-h-0 flex-col lg:h-[90vh]">
-                  <div className="border-b border-[color:var(--color-border)] px-6 py-5 md:px-8">
-                    <div className="flex items-center justify-between gap-4">
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-muted">Edit profile</p>
-                        <h3 className="mt-2 text-2xl font-bold">Update your public profile</h3>
-                      </div>
-                      {saved ? (
-                        <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-semibold text-emerald-600">
-                          <Check size={14} /> Saved
-                        </span>
-                      ) : null}
-                    </div>
-                  </div>
-
-                  <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6 md:px-8">
-                    <div className="space-y-6">
-                      <label className="block">
-                        <span className="text-sm font-semibold text-foreground">Display name</span>
-                        <input
-                          value={form.name}
-                          onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
-                          className="mt-2 w-full rounded-2xl border border-[color:var(--color-border)] bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
-                        />
-                      </label>
-
-                      <label className="block">
-                        <div className="flex items-center justify-between gap-4">
-                          <span className="text-sm font-semibold text-foreground">Username</span>
-                          <span className="text-xs font-medium text-muted">This updates the profile URL</span>
-                        </div>
-                        <div className="mt-2 flex rounded-2xl border border-[color:var(--color-border)] bg-background px-4 py-3 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
-                          <span className="text-sm text-muted">@</span>
-                          <input
-                            value={form.username}
-                            onChange={(event) => setForm((current) => ({ ...current, username: event.target.value }))}
-                            className="w-full bg-transparent pl-1 text-sm outline-none"
-                          />
-                        </div>
-                        <p className="mt-2 text-xs text-muted">Preview: /creator/{previewSlug}/profile</p>
-                      </label>
-
-                      <label className="block">
-                        <span className="text-sm font-semibold text-foreground">Bio</span>
-                        <textarea
-                          value={form.bio}
-                          onChange={(event) => setForm((current) => ({ ...current, bio: event.target.value }))}
-                          rows={4}
-                          className="mt-2 w-full rounded-2xl border border-[color:var(--color-border)] bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
-                        />
-                      </label>
-
-                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <label className="block">
-                          <span className="text-sm font-semibold text-foreground">Location</span>
-                          <input
-                            value={form.location}
-                            onChange={(event) => setForm((current) => ({ ...current, location: event.target.value }))}
-                            className="mt-2 w-full rounded-2xl border border-[color:var(--color-border)] bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
-                          />
-                        </label>
-                        <label className="block">
-                          <span className="text-sm font-semibold text-foreground">Website</span>
-                          <input
-                            value={form.website}
-                            onChange={(event) => setForm((current) => ({ ...current, website: event.target.value }))}
-                            className="mt-2 w-full rounded-2xl border border-[color:var(--color-border)] bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
-                          />
-                        </label>
-                      </div>
-
-                      <div>
-                        <div className="flex items-center justify-between gap-4">
-                          <span className="text-sm font-semibold text-foreground">Banner style</span>
-                          <span className="text-xs font-medium text-muted">Choose a visual direction</span>
-                        </div>
-                        <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                          {bannerStyles.map((option) => {
-                            const isActive = form.bannerStyle === option;
-
-                            return (
-                              <button
-                                key={option}
-                                type="button"
-                                onClick={() => setForm((current) => ({ ...current, bannerStyle: option }))}
-                                className={cn(
-                                  'rounded-2xl border p-4 text-left transition-all',
-                                  isActive
-                                    ? 'border-primary bg-primary/5 shadow-sm ring-4 ring-primary/10'
-                                    : 'border-[color:var(--color-border)] bg-background hover:border-primary/40 hover:shadow-sm'
-                                )}
-                              >
-                                <div className={cn('h-16 rounded-2xl bg-gradient-to-r', bannerStyleDetails[option].accent)} />
-                                <div className="mt-3 flex items-center justify-between gap-2">
-                                  <span className="font-semibold text-foreground">{option}</span>
-                                  {isActive ? <Check size={16} className="text-primary" /> : null}
-                                </div>
-                                <p className="mt-1 text-xs leading-relaxed text-muted">{bannerStyleDetails[option].description}</p>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                        <button
-                          type="button"
-                          onClick={() => bannerUploadRef.current?.click()}
-                          className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[color:var(--color-border)] px-4 py-3 text-sm font-semibold transition hover:bg-muted/40"
-                        >
-                          <Upload size={16} /> Upload banner
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => brandKitUploadRef.current?.click()}
-                          className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[color:var(--color-border)] px-4 py-3 text-sm font-semibold transition hover:bg-muted/40"
-                        >
-                          <PenLine size={16} /> Upload brand kit
-                        </button>
-                        <button
-                          type="button"
-                          onClick={handleSave}
-                          className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#A100FF] to-[#7B2CFF] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 transition hover:scale-[1.01]"
-                        >
-                          <Save size={16} /> Save changes
-                        </button>
-                      </div>
-
-                      <input ref={bannerUploadRef} type="file" accept="image/*" className="hidden" onChange={handleBannerUpload} />
-                      <input ref={brandKitUploadRef} type="file" accept="image/*,.pdf,.zip" className="hidden" onChange={handleBrandKitUpload} />
-
-                      <div className="rounded-[22px] border border-dashed border-[color:var(--color-border)] bg-muted/20 p-4">
-                        <div className="flex items-center gap-3">
-                          <div className="rounded-2xl bg-white p-2 shadow-sm">
-                            <Plus size={16} className="text-primary" />
-                          </div>
-                          <div>
-                            <p className="text-sm font-semibold">Quick actions</p>
-                            <p className="text-xs text-muted">Keep the edit flow fast and creator-first.</p>
-                          </div>
-                        </div>
+                        <p className="text-sm font-semibold">Quick actions</p>
+                        <p className="text-xs text-muted">Keep the edit flow fast and creator-first.</p>
                       </div>
                     </div>
                   </div>
