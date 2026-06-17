@@ -1,28 +1,36 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Manrope, Space_Grotesk } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeProvider";
 
-const manrope = Manrope({
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  variable: "--font-manrope",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
-  variable: "--font-space",
 });
+
+export const metadata: Metadata = {
+  title: "LinkNest | Creator Affiliate Platform",
+  description:
+    "Discover creator-recommended products, curated collections, and trusted affiliate picks through personalized storefronts.",
+};
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${manrope.variable} ${spaceGrotesk.variable} bg-[#F8F8FC]`}
-      >
-        <ThemeProvider>{children}</ThemeProvider>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">
+        {children}
       </body>
     </html>
   );
