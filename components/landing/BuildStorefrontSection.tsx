@@ -89,36 +89,36 @@ export default function BuildStorefrontSection() {
   ];
 
   return (
-    <section id="templates" className="py-12">
+    <section id="templates" className="min-h-screen flex items-center py-10">
       <div className="container-shell text-center">
-        <h2 className="text-3xl font-extrabold text-[#111827] sm:text-4xl" style={{ fontFamily: "var(--font-space)" }}>
+        <h2 className="text-2xl font-extrabold text-[#111827] sm:text-3xl" style={{ fontFamily: "var(--font-space)" }}>
           Build Any Kind of Storefront
         </h2>
-        <p className="mt-4 text-[#6B7280]">Pick the template to build your own link page</p>
+        <p className="mt-3 text-sm text-[#6B7280]">Pick the template to build your own link page</p>
 
         <div 
           ref={scrollRef}
-          className="mt-16 flex gap-8 overflow-x-auto pb-12 no-scrollbar snap-x snap-mandatory px-4"
+          className="mt-12 flex gap-6 overflow-x-auto pb-10 no-scrollbar snap-x snap-mandatory px-4"
         >
           {templates.map((template, i) => (
-            <div key={i} className="flex-none w-[300px] sm:w-[340px] lg:w-[380px] flex flex-col rounded-[40px] border border-slate-100 bg-white p-8 transition-all hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:-translate-y-1.5 snap-center">
-              <div className="text-left mb-6">
-                <h3 className="text-lg font-black text-[#111827] mb-1">{template.title}</h3>
-                <p className="text-[11px] text-slate-400 font-medium leading-tight">{template.desc}</p>
+            <div key={i} className="flex-none w-[270px] sm:w-[300px] lg:w-[340px] flex flex-col rounded-[32px] border border-slate-100 bg-white p-6 transition-all hover:shadow-[0_15px_40px_rgba(0,0,0,0.05)] hover:-translate-y-1 snap-center">
+              <div className="text-left mb-5">
+                <h3 className="text-base font-black text-[#111827] mb-1">{template.title}</h3>
+                <p className="text-[10px] text-slate-400 font-medium leading-tight">{template.desc}</p>
               </div>
-              <button className={`w-full rounded-full py-2.5 text-[11px] font-black text-white shadow-lg transition-transform active:scale-95 ${template.color}`}>
+              <button className={`w-full rounded-full py-2 text-[10px] font-black text-white shadow-md transition-transform active:scale-95 ${template.color}`}>
                 {template.tag}
               </button>
-              <div className="mt-8 grid grid-cols-3 gap-3">
+              <div className="mt-6 grid grid-cols-3 gap-2.5">
                 {template.items.map((img, idx) => (
-                  <div key={idx} className="aspect-square rounded-2xl overflow-hidden shadow-sm">
+                  <div key={idx} className="aspect-square rounded-xl overflow-hidden shadow-sm">
                     <img src={img} alt="Product" className="h-full w-full object-cover transition-transform duration-500 hover:scale-110" />
                   </div>
                 ))}
               </div>
-              <div className="mt-8 flex justify-center gap-1.5">
+              <div className="mt-6 flex justify-center gap-1.5">
                 {[1, 2, 3].map((star) => (
-                  <span key={star} className="text-[10px] text-orange-400">★</span>
+                  <span key={star} className="text-[9px] text-orange-400">★</span>
                 ))}
               </div>
             </div>
@@ -126,20 +126,20 @@ export default function BuildStorefrontSection() {
         </div>
 
         {/* Pagination Dots */}
-        <div className="mt-4 flex justify-center gap-2">
+        <div className="mt-3 flex justify-center gap-2">
           {templates.map((_, i) => (
             <div 
               key={i} 
               className={`h-2 transition-all duration-300 rounded-full ${
-                activeIndex === i ? "w-6 bg-[#8A2BE2]" : "w-2 bg-[#E5E7EB]"
+                activeIndex === i ? "w-5 bg-[#8A2BE2]" : "w-2 bg-[#E5E7EB]"
               }`}
             />
           ))}
         </div>
 
-        <button className="mt-12 inline-flex items-center gap-2 text-sm font-bold text-[#8A2BE2] hover:underline">
+        <button className="mt-10 inline-flex items-center gap-2 text-sm font-bold text-[#8A2BE2] hover:underline">
           Explore All Templates
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
         </button>
       </div>
     </section>

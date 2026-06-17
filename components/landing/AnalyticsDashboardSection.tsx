@@ -58,72 +58,72 @@ export default function AnalyticsDashboardSection() {
   ];
 
   return (
-    <section id="how-to-earn" className="py-12 bg-white overflow-hidden">
+    <section id="how-to-earn" className="min-h-screen flex items-center py-10 bg-white overflow-hidden">
       <div className="container-shell px-4">
         {/* Main Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-black text-[#111827] leading-[1.1] mb-6 tracking-tight" style={{ fontFamily: "var(--font-space)" }}>
+        <div className="text-center mb-10">
+          <h2 className="text-2xl sm:text-3xl font-black text-[#111827] leading-[1.1] mb-4 tracking-tight" style={{ fontFamily: "var(--font-space)" }}>
             Everything you need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#A100FF] to-[#7B2CFF]">scale your growth</span>
           </h2>
-          <p className="text-lg text-[#6B7280] font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm text-[#6B7280] font-medium max-w-2xl mx-auto leading-relaxed">
             From powerful real-time analytics to seamless monetization, we provide the tools you need to build a successful creator business.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+        <div className="grid lg:grid-cols-2 gap-10 items-stretch">
           
           {/* Left Side: Analytics Overview */}
           <div className="flex flex-col h-full">
-            <div className="mb-8">
-              <h2 className="text-3xl font-black text-[#111827] mb-2 tracking-tight">Analytics Overview</h2>
-              <p className="text-slate-500 font-medium">Track your performance in real-time</p>
+            <div className="mb-6">
+              <h2 className="text-2xl font-black text-[#111827] mb-2 tracking-tight">Analytics Overview</h2>
+              <p className="text-slate-500 font-medium text-sm">Track your performance in real-time</p>
             </div>
 
-            <div className="bg-white rounded-[32px] p-8 border border-slate-100 shadow-[0_8px_40px_rgb(0,0,0,0.03)] flex flex-col flex-1">
+            <div className="bg-white rounded-[28px] p-6 border border-slate-100 shadow-[0_6px_32px_rgb(0,0,0,0.03)] flex flex-col flex-1">
               {/* Top Metrics */}
-              <div className="grid grid-cols-2 gap-4 mb-10">
-                <div className="p-5 rounded-2xl bg-[#F5F3FF]/50 border border-[#F5F3FF]">
+              <div className="grid grid-cols-2 gap-3.5 mb-8">
+                <div className="p-4 rounded-xl bg-[#F5F3FF]/50 border border-[#F5F3FF]">
                   <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Total Views</p>
                   <div className="flex items-end justify-between">
-                    <h3 className="text-2xl font-black text-[#111827]">842.5K</h3>
-                    <span className="text-[10px] font-bold text-green-500 bg-green-50 px-2 py-0.5 rounded-full mb-1">▲ 12%</span>
+                    <h3 className="text-xl font-black text-[#111827]">842.5K</h3>
+                    <span className="text-[9px] font-bold text-green-500 bg-green-50 px-1.5 py-0.5 rounded-full mb-1">▲ 12%</span>
                   </div>
                 </div>
-                <div className="p-5 rounded-2xl bg-[#ECFDF5]/50 border border-[#ECFDF5]">
+                <div className="p-4 rounded-xl bg-[#ECFDF5]/50 border border-[#ECFDF5]">
                   <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Total Clicks</p>
                   <div className="flex items-end justify-between">
-                    <h3 className="text-2xl font-black text-[#111827]">245.8K</h3>
-                    <span className="text-[10px] font-bold text-green-500 bg-green-50 px-2 py-0.5 rounded-full mb-1">▲ 8%</span>
+                    <h3 className="text-xl font-black text-[#111827]">245.8K</h3>
+                    <span className="text-[9px] font-bold text-green-500 bg-green-50 px-1.5 py-0.5 rounded-full mb-1">▲ 8%</span>
                   </div>
                 </div>
               </div>
 
               {/* Animated Chart */}
-              <div className="relative flex-1 min-h-[260px] flex flex-col justify-end">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex gap-4">
+              <div className="relative flex-1 min-h-[220px] flex flex-col justify-end">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex gap-3.5">
                     <div className="flex items-center gap-1.5">
-                      <div className="h-2 w-2 rounded-full bg-[#7B2CFF]" />
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Views</span>
+                      <div className="h-1.5 w-1.5 rounded-full bg-[#7B2CFF]" />
+                      <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Views</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <div className="h-2 w-2 rounded-full bg-[#E9D5FF]" />
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Clicks</span>
+                      <div className="h-1.5 w-1.5 rounded-full bg-[#E9D5FF]" />
+                      <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Clicks</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-green-50 border border-green-100">
+                  <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-green-50 border border-green-100">
                     <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-[9px] font-black uppercase tracking-widest text-green-600">Live</span>
+                    <span className="text-[8px] font-black uppercase tracking-widest text-green-600">Live</span>
                   </div>
                 </div>
 
-                <div className="h-[200px] w-full relative">
+                <div className="h-[170px] w-full relative">
                   <svg className="w-full h-full overflow-visible" viewBox="0 0 1000 300" preserveAspectRatio="none">
                     <path 
                       d={viewsPath} 
                       fill="none" 
                       stroke="#7B2CFF" 
-                      strokeWidth="5" 
+                      strokeWidth="4" 
                       strokeLinecap="round" 
                       className="transition-all duration-1000 ease-in-out"
                     />
@@ -131,7 +131,7 @@ export default function AnalyticsDashboardSection() {
                       d={clicksPath} 
                       fill="none" 
                       stroke="#E9D5FF" 
-                      strokeWidth="5" 
+                      strokeWidth="4" 
                       strokeLinecap="round" 
                       className="transition-all duration-1000 ease-in-out"
                     />
@@ -139,14 +139,14 @@ export default function AnalyticsDashboardSection() {
                     <circle 
                       cx="1000" 
                       cy={300 - (viewsPoints[viewsPoints.length - 1] * 300 / 100)} 
-                      r="6" 
+                      r="5" 
                       fill="#7B2CFF" 
                       className="transition-all duration-1000 ease-in-out animate-pulse shadow-lg"
                     />
                     <circle 
                       cx="1000" 
                       cy={300 - (clicksPoints[clicksPoints.length - 1] * 300 / 100)} 
-                      r="6" 
+                      r="5" 
                       fill="#E9D5FF" 
                       stroke="#7B2CFF"
                       strokeWidth="2"
@@ -156,9 +156,9 @@ export default function AnalyticsDashboardSection() {
                 </div>
 
                 {/* X-Axis Labels */}
-                <div className="flex justify-between mt-6 px-2">
+                <div className="flex justify-between mt-5 px-1.5">
                   {['Jun 01', 'Jun 02', 'Jun 03', 'Jun 04', 'Jun 05', 'Jun 06', 'Jun 07', 'Jun 08'].map((date) => (
-                    <span key={date} className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <span key={date} className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">
                       {date}
                     </span>
                   ))}
@@ -169,37 +169,37 @@ export default function AnalyticsDashboardSection() {
 
           {/* Right Side: How to Earn Monetization Timeline */}
           <div className="flex flex-col h-full">
-            <div className="mb-8">
-              <h2 className="text-3xl font-black text-[#111827] mb-2 tracking-tight">How to Earn</h2>
-              <p className="text-slate-500 font-medium">Simple steps to start earning</p>
+            <div className="mb-6">
+              <h2 className="text-2xl font-black text-[#111827] mb-2 tracking-tight">How to Earn</h2>
+              <p className="text-slate-500 font-medium text-sm">Simple steps to start earning</p>
             </div>
 
-            <div className="bg-white rounded-[32px] p-8 border border-slate-100 shadow-[0_8px_40px_rgb(0,0,0,0.03)] flex-1">
-              <div className="relative space-y-8">
+            <div className="bg-white rounded-[28px] p-6 border border-slate-100 shadow-[0_6px_32px_rgb(0,0,0,0.03)] flex-1">
+              <div className="relative space-y-6">
                 {/* Vertical Dotted Line */}
-                <div className="absolute left-[19px] top-4 bottom-4 w-px border-l-2 border-dotted border-slate-100" />
+                <div className="absolute left-[17px] top-3 bottom-3 w-px border-l-2 border-dotted border-slate-100" />
 
                 {monetizationSteps.map((step) => (
-                  <div key={step.id} className="relative flex items-start gap-6 group">
-                    <div className="flex-none h-10 w-10 rounded-full bg-[#F5F3FF] border-2 border-white shadow-sm flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
+                  <div key={step.id} className="relative flex items-start gap-5 group">
+                    <div className="flex-none h-9 w-9 rounded-full bg-[#F5F3FF] border-2 border-white shadow-sm flex items-center justify-center z-10 group-hover:scale-105 transition-transform duration-300">
                       <span className="text-sm font-black text-[#7B2CFF]">{step.id}</span>
                     </div>
-                    <div className="flex-1 pt-1">
-                      <h4 className="text-lg font-black text-[#111827] mb-1 group-hover:text-[#7B2CFF] transition-colors">{step.title}</h4>
+                    <div className="flex-1 pt-0.5">
+                      <h4 className="text-base font-black text-[#111827] mb-1 group-hover:text-[#7B2CFF] transition-colors">{step.title}</h4>
                       <p className="text-sm text-slate-500 font-medium leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-12 p-6 rounded-[24px] bg-gradient-to-br from-[#A100FF] to-[#7B2CFF] text-white relative overflow-hidden group cursor-pointer">
+              <div className="mt-10 p-5 rounded-[20px] bg-gradient-to-br from-[#A100FF] to-[#7B2CFF] text-white relative overflow-hidden group cursor-pointer">
                 <div className="relative z-10">
-                  <h4 className="text-lg font-bold mb-4">Ready to start?</h4>
-                  <button className="bg-white text-[#7B2CFF] px-6 py-2.5 rounded-xl text-sm font-black hover:shadow-lg transition-all active:scale-95">
+                  <h4 className="text-base font-bold mb-3.5">Ready to start?</h4>
+                  <button className="bg-white text-[#7B2CFF] px-5 py-2.5 rounded-lg text-sm font-black hover:shadow-lg transition-all active:scale-95">
                     Get Started Free
                   </button>
                 </div>
-                <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all" />
+                <div className="absolute -right-3 -bottom-3 w-28 h-28 bg-white/10 rounded-full group-hover:bg-white/20 transition-all" />
               </div>
             </div>
           </div>
