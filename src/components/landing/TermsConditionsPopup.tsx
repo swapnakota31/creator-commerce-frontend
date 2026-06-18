@@ -124,7 +124,7 @@ export default function TermsConditionsPopup({ isOpen, onClose }: TermsCondition
           <section>
             <h3 className="text-xl font-bold text-slate-800 mb-4">Disclaimer</h3>
             <p className="mb-3">
-              The platform is provided on an "as-is" and "as-available" basis.
+              The platform is provided on an &quot;as-is&quot; and &quot;as-available&quot; basis.
             </p>
             <p className="mb-3">LinkNest makes no warranties regarding:</p>
             <ul className="list-disc list-inside space-y-1 text-slate-700">

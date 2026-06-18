@@ -98,7 +98,7 @@ export default function EverythingYouNeedSection() {
         {/* Header - Reduced margin bottom */}
         <div className="text-center max-w-3xl mx-auto mb-6">
           <h2 className="text-2xl sm:text-3xl font-black text-[#111827] tracking-tight leading-[1.1] mb-2" style={{ fontFamily: "var(--font-space)" }}>
-            Features You'll Love
+            Features You&apos;ll Love
           </h2>
           <p className="text-sm text-[#6B7280] font-medium leading-relaxed px-4">
             Create stunning storefronts, organize products, track performance, and grow with confidence.

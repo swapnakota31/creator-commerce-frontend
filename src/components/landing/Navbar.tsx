@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export interface NavItem {
@@ -39,7 +40,7 @@ export default function Navbar({ items = defaultNavItems }: NavbarProps) {
     >
       <div className="container-shell py-4">
         <div className="flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#8A2BE2] text-white shadow-lg shadow-purple-500/20">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
@@ -47,7 +48,7 @@ export default function Navbar({ items = defaultNavItems }: NavbarProps) {
               </svg>
             </span>
             <span className="text-2xl font-black tracking-tighter text-[#111827]">LinkNest</span>
-          </a>
+          </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
             {items.map((item) => (
@@ -57,11 +58,10 @@ export default function Navbar({ items = defaultNavItems }: NavbarProps) {
             ))}
           </nav>
 
-
           <div className="flex items-center gap-4">
-            <a href="#login" className="hidden sm:block text-sm font-bold text-[#111827] hover:text-[#8A2BE2] transition-colors">
+            <Link href="/auth" className="hidden sm:block text-sm font-bold text-[#111827] hover:text-[#8A2BE2] transition-colors">
               Login
-            </a>
+            </Link>
             <a
               href="#get-started"
               className="brand-gradient rounded-full px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#8A2BE2]/20 transition-transform hover:scale-105"
@@ -97,7 +97,7 @@ export default function Navbar({ items = defaultNavItems }: NavbarProps) {
               </a>
             ))}
             <hr />
-            <a href="#login" className="text-base font-bold text-[#111827]">Login</a>
+            <Link href="/auth" className="text-base font-bold text-[#111827]" onClick={() => setMobileOpen(false)}>Login</Link>
           </nav>
         </div>
       )}

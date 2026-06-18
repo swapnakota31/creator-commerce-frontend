@@ -33,7 +33,7 @@ export default function LoadingState() {
       window.setTimeout(() => {
         setCompletedSteps([0, 1, 2, 3]);
       }, 2400),
-      window.setTimeout(() => router.push("/dashboard"), 2800),
+      window.setTimeout(() => router.push("/creator/alexrivera_official/dashboard"), 2800),
     ];
 
     return () => timers.forEach((timer) => window.clearTimeout(timer));

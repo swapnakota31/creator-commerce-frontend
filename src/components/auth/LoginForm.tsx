@@ -38,7 +38,7 @@ export default function LoginForm() {
 
       // Navigate to dashboard after successful login
       window.setTimeout(() => {
-        router.push("/dashboard");
+        router.push("/creator/alexrivera_official/dashboard");
       }, 300);
     } catch (err) {
       setError("Email or password is incorrect.");

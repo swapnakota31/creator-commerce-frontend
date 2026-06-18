@@ -68,7 +68,7 @@ export default function AboutUsPopup({ isOpen, onClose }: AboutUsPopupProps) {
             </div>
             <div className="bg-purple-50 rounded-2xl p-6 border border-purple-100">
               <p className="text-slate-800 font-semibold text-center italic text-lg">
-                "To become the infrastructure layer powering creator-led commerce in India."
+                &quot;To become the infrastructure layer powering creator-led commerce in India.&quot;
               </p>
             </div>
           </section>

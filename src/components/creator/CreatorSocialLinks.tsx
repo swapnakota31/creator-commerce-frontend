@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { Trash2 } from 'lucide-react';
+import { AtSign, Globe, Hash, Link2, MessageCircle, Trash2, Video } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { FaInstagram, FaLinkedinIn, FaWhatsapp, FaXTwitter, FaYoutube } from 'react-icons/fa6';
-import { Globe } from 'lucide-react';
 
 type SocialPlatformKey = 'instagram' | 'youtube' | 'x' | 'linkedin' | 'whatsapp' | 'website';
 
@@ -18,11 +16,11 @@ export type SocialLink = {
 };
 
 export const initialSocialLinks: SocialLink[] = [
-  { key: 'instagram', name: 'Instagram', placeholder: 'https://instagram.com/yourname', value: '', icon: FaInstagram, tone: 'text-[#E4405F]' },
-  { key: 'youtube', name: 'YouTube', placeholder: 'https://youtube.com/@yourname', value: '', icon: FaYoutube, tone: 'text-[#FF0000]' },
-  { key: 'x', name: 'X', placeholder: 'https://x.com/yourname', value: '', icon: FaXTwitter, tone: 'text-black dark:text-white' },
-  { key: 'linkedin', name: 'LinkedIn', placeholder: 'https://linkedin.com/in/yourname', value: '', icon: FaLinkedinIn, tone: 'text-[#0A66C2]' },
-  { key: 'whatsapp', name: 'WhatsApp', placeholder: 'https://wa.me/123456789', value: '', icon: FaWhatsapp, tone: 'text-[#25D366]' },
+  { key: 'instagram', name: 'Instagram', placeholder: 'https://instagram.com/yourname', value: '', icon: AtSign, tone: 'text-[#E4405F]' },
+  { key: 'youtube', name: 'YouTube', placeholder: 'https://youtube.com/@yourname', value: '', icon: Video, tone: 'text-[#FF0000]' },
+  { key: 'x', name: 'X', placeholder: 'https://x.com/yourname', value: '', icon: Hash, tone: 'text-black dark:text-white' },
+  { key: 'linkedin', name: 'LinkedIn', placeholder: 'https://linkedin.com/in/yourname', value: '', icon: Link2, tone: 'text-[#0A66C2]' },
+  { key: 'whatsapp', name: 'WhatsApp', placeholder: 'https://wa.me/123456789', value: '', icon: MessageCircle, tone: 'text-[#25D366]' },
   { key: 'website', name: 'Website', placeholder: 'https://yourwebsite.com', value: '', icon: Globe, tone: 'text-primary' },
 ];
 

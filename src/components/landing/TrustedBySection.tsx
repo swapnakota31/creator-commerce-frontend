@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-function PlatformCard({ platform }: { platform: any }) {
+type Platform = {
+  name: string;
+  logo: string;
+  width: string;
+};
+
+function PlatformCard({ platform }: { platform: Platform }) {
   const [hasError, setHasError] = useState(false);
 
   return (

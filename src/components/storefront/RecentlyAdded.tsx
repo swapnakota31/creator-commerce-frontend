@@ -69,7 +69,6 @@ export default function RecentlyAdded({ username }: Props) {
     if (emblaApi) {
       emblaApi.reInit();
       emblaApi.scrollTo(0);
-      setSelectedIndex(0);
     }
   }, [recentProducts.length, emblaApi]);
 

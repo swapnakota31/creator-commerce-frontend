@@ -51,7 +51,7 @@ export default function TestimonialsSection() {
                        <span key={j} className="text-orange-400">★</span>
                      ))}
                    </div>
-                   <p className="text-sm leading-relaxed text-[#111827]">"{t.quote}"</p>
+                   <p className="text-sm leading-relaxed text-[#111827]">&quot;{t.quote}&quot;</p>
                    <div className="mt-6 flex items-center gap-3">
                      <img src={t.img} alt={t.name} className="h-10 w-10 rounded-full" />
                      <div>

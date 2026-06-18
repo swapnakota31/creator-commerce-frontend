@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 
-function BrandCard({ brand }: { brand: any }) {
+type Brand = {
+  name: string;
+  logo: string;
+  border: string;
+  glow: string;
+  color: string;
+};
+
+function BrandCard({ brand }: { brand: Brand }) {
   const [imgStatus, setImgStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
 
   return (

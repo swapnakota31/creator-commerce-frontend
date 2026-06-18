@@ -134,7 +134,7 @@ export default function PrivacyPolicyPopup({ isOpen, onClose }: PrivacyPolicyPop
           </section>
 
           <section>
-            <h3 className="text-xl font-bold text-slate-800 mb-4">Children's Privacy</h3>
+            <h3 className="text-xl font-bold text-slate-800 mb-4">Children&apos;s Privacy</h3>
             <p className="leading-relaxed">
               LinkNest is not intended for children under 13 years of age.
             </p>

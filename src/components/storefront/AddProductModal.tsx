@@ -328,7 +328,7 @@ export default function AddProductModal({ onClose, username }: Props) {
               </h3>
 
               <p className="mt-1 text-sm text-slate-500">
-                It's now live on your store at{" "}
+                It&apos;s now live on your store at{" "}
                 <span className="font-medium text-violet-600">
                   linknest.com/store/{username}
                 </span>
