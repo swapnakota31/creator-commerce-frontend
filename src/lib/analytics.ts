@@ -20,26 +20,25 @@
 //      - Traffic source          (referrer from document.referrer)
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { trackAnalyticsEvent } from "./api";
+
 export type EventType = "STORE_VIEW" | "PRODUCT_VIEW" | "PRODUCT_CLICK";
 
 export type TrackEventPayload = {
   type: EventType;
-  creatorId?: string;   // TODO: pass from auth context when backend is ready
-  productId?: number;
+  creatorId?: string;
+  productId?: number | string;
 };
 
 export function trackEvent(payload: TrackEventPayload): void {
-  // TODO: replace with real API call
-  // Example:
-  // fetch("/api/analytics", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify({
-  //     ...payload,
-  //     device_type: getDeviceType(),
-  //     traffic_source: document.referrer || "direct",
-  //   }),
-  // });
+  // Call the backend API handler asynchronously (fails silently if API is offline/unimplemented)
+  trackAnalyticsEvent({
+    type: payload.type,
+    creatorId: payload.creatorId,
+    productId: payload.productId ? String(payload.productId) : undefined,
+    deviceType: getDeviceType(),
+    trafficSource: typeof window !== "undefined" ? document.referrer || "direct" : "direct",
+  });
 
   if (process.env.NODE_ENV === "development") {
     console.log("[analytics]", payload);

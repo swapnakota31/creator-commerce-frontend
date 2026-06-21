@@ -22,7 +22,7 @@ export default async function CollectionDetailPage({ params }: Props) {
   }
 
   const collectionProducts = products.filter((product) =>
-    collection.productIds.includes(product.id)
+    (collection.productIds as any[]).includes(product.id)
   );
 
   return (
@@ -118,6 +118,7 @@ export default async function CollectionDetailPage({ params }: Props) {
               <ProductCard
                 key={product.id}
                 id={product.id}
+                slug={product.slug}
                 title={product.title}
                 image={product.image}
                 tag={product.tag}

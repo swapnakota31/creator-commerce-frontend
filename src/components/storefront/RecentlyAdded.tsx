@@ -274,7 +274,7 @@ export default function RecentlyAdded({ username }: Props) {
                     </span>
 
                     <Link
-                      href={`/store/${username}/products/${product.id}?from=recent`}
+                      href={`/store/${username}/products/${product.slug || product.id}?from=recent`}
                       className="
                       rounded-full
                       bg-slate-100

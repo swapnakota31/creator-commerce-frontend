@@ -5,13 +5,16 @@ import {
   useContext,
   useState,
   useMemo,
+  useEffect,
   ReactNode,
 } from "react";
+import { useParams } from "next/navigation";
 
 import { products as initialProducts } from "@/lib/mockData";
+import { getStoreProducts, type BackendProduct } from "@/lib/api";
 
 export type Product = {
-  id: number;
+  id: number | string;
   title: string;
   category?: string;
   subcategory?: string;
@@ -49,19 +52,95 @@ type StoreContextType = {
   searchTerm: string;
   setSearchTerm: (value: string) => void;
   recentProducts: Product[];
+  loading: boolean;
+  error: string | null;
 };
 
 const StoreContext = createContext<StoreContextType | null>(null);
 
+function mapBackendProductToProduct(bp: BackendProduct): Product {
+  const primaryLink = bp.productLinks?.find((l) => l.isPrimary) || bp.productLinks?.[0];
+  const affUrl = primaryLink?.affiliateUrl || primaryLink?.originalUrl || "#";
+  const affPlatform = primaryLink?.platform || bp.sourcePlatform || "Amazon";
+
+  return {
+    id: bp.id,
+    title: bp.title,
+    category: bp.category,
+    subcategory: bp.subcategory || undefined,
+    brand: bp.brand,
+    tag: bp.category || "Recommendation",
+    creatorNote: bp.shortDescription || bp.fullDescription || "Creator recommended pick!",
+    description: bp.fullDescription || bp.shortDescription || undefined,
+    summary: bp.shortDescription || undefined,
+    seoTitle: bp.title,
+    metaDescription: bp.shortDescription || undefined,
+    slug: bp.slug,
+    tags: [bp.category, bp.brand].filter(Boolean),
+    affiliatePlatform: affPlatform,
+    affiliateUrl: affUrl,
+    sourcePlatform: bp.sourcePlatform,
+    sourceProductId: bp.sourceProductId,
+    currency: bp.currency === "INR" ? "₹" : bp.currency === "USD" ? "$" : bp.currency,
+    price: bp.price,
+    rating: bp.rating || "4.5",
+    reviewCount: String(bp.reviewCount || 0),
+    availability: bp.isActive ? "In Stock" : "Out of Stock",
+    image: bp.primaryImageUrl,
+    images: [bp.primaryImageUrl],
+    specifications: {},
+    isNew: Date.now() - new Date(bp.createdAt).getTime() < 7 * 24 * 60 * 60 * 1000,
+    addedAt: new Date(bp.createdAt).getTime(),
+  };
+}
+
 export function StoreProvider({ children }: { children: ReactNode }) {
-  const [products] = useState<Product[]>(
-    initialProducts.map((p) => ({
-      ...p,
-      // TODO: replace isNew and addedAt with real values from backend
-      isNew: false,
-      addedAt: 0,
-    })) as Product[]
-  );
+  const params = useParams();
+  const username = params?.username as string;
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!username) return;
+
+    let active = true;
+    async function loadData() {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const rawProducts = await getStoreProducts(username);
+        if (active) {
+          const mapped = rawProducts.map(mapBackendProductToProduct);
+          setProducts(mapped);
+        }
+      } catch (err: any) {
+        if (active) {
+          console.warn("[StoreContext] Failed to load products from API:", err);
+          setError(err.message || "Failed to load products");
+          // Fallback to mock data in dev/testing environments if API is offline
+          setProducts(
+            initialProducts.map((p) => ({
+              ...p,
+              isNew: false,
+              addedAt: 0,
+            })) as Product[]
+          );
+        }
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    }
+
+    loadData();
+    return () => {
+      active = false;
+    };
+  }, [username]);
 
   const [activeFilter, setActiveFilter] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
@@ -107,7 +186,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   [products, activeFilter, searchTerm]);
 
   // Memoized — sorted by addedAt desc, top 6
-  // TODO: replace addedAt with real timestamp from backend
   const recentProducts = useMemo(() =>
     [...products]
       .sort((a, b) => (b.addedAt ?? 0) - (a.addedAt ?? 0))
@@ -125,6 +203,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         searchTerm,
         setSearchTerm,
         recentProducts,
+        loading,
+        error,
       }}
     >
       {children}

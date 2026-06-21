@@ -12,6 +12,8 @@ import {
 
 import { products } from "@/lib/mockData";
 import ViewProductButton from "@/components/storefront/ViewProductButton";
+import { getProductBySlug, type BackendProduct } from "@/lib/api";
+import type { Product } from "@/lib/StoreContext";
 
 type Props = {
   params: Promise<{
@@ -25,37 +27,110 @@ type Props = {
   }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
-  const product = products.find((p) => p.id === Number(id));
-
-  if (!product) return { title: "Product Not Found" };
+function mapBackendProductToProduct(bp: BackendProduct): Product {
+  const primaryLink = bp.productLinks?.find((l) => l.isPrimary) || bp.productLinks?.[0];
+  const affUrl = primaryLink?.affiliateUrl || primaryLink?.originalUrl || "#";
+  const affPlatform = primaryLink?.platform || bp.sourcePlatform || "Amazon";
 
   return {
-    title: product.seoTitle ?? product.title,
-    description: product.metaDescription ?? product.description,
-    openGraph: {
-      title: product.seoTitle ?? product.title,
-      description: product.metaDescription ?? product.description,
-      images: [{ url: product.image }],
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: product.seoTitle ?? product.title,
-      description: product.metaDescription ?? product.description,
-      images: [product.image],
-    },
+    id: bp.id,
+    title: bp.title,
+    category: bp.category,
+    subcategory: bp.subcategory || undefined,
+    brand: bp.brand,
+    tag: bp.category || "Recommendation",
+    creatorNote: bp.shortDescription || bp.fullDescription || "Creator recommended pick!",
+    description: bp.fullDescription || bp.shortDescription || undefined,
+    summary: bp.shortDescription || undefined,
+    seoTitle: bp.title,
+    metaDescription: bp.shortDescription || undefined,
+    slug: bp.slug,
+    tags: [bp.category, bp.brand].filter(Boolean) as string[],
+    affiliatePlatform: affPlatform,
+    affiliateUrl: affUrl,
+    sourcePlatform: bp.sourcePlatform,
+    sourceProductId: bp.sourceProductId,
+    currency: bp.currency === "INR" ? "₹" : bp.currency === "USD" ? "$" : bp.currency,
+    price: bp.price,
+    rating: bp.rating || "4.5",
+    reviewCount: String(bp.reviewCount || 0),
+    availability: bp.isActive ? "In Stock" : "Out of Stock",
+    image: bp.primaryImageUrl,
+    images: [bp.primaryImageUrl],
+    specifications: {},
+    isNew: Date.now() - new Date(bp.createdAt).getTime() < 7 * 24 * 60 * 60 * 1000,
+    addedAt: new Date(bp.createdAt).getTime(),
   };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  
+  try {
+    const bp = await getProductBySlug(id);
+    const title = bp.title;
+    const description = bp.shortDescription || bp.fullDescription || "Creator recommended pick!";
+    return {
+      title: title,
+      description: description,
+      openGraph: {
+        title: title,
+        description: description,
+        images: [{ url: bp.primaryImageUrl }],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: title,
+        description: description,
+        images: [bp.primaryImageUrl],
+      },
+    };
+  } catch (error) {
+    // Fallback to mock lookup for metadata
+    const mockId = isNaN(Number(id)) ? 1 : Number(id);
+    const product = products.find((p) => p.id === mockId || p.slug === id);
+    if (!product) return { title: "Product Not Found" };
+    return {
+      title: product.seoTitle ?? product.title,
+      description: product.metaDescription ?? product.description,
+      openGraph: {
+        title: product.seoTitle ?? product.title,
+        description: product.metaDescription ?? product.description,
+        images: [{ url: product.image }],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: product.seoTitle ?? product.title,
+        description: product.metaDescription ?? product.description,
+        images: [product.image],
+      },
+    };
+  }
 }
 
 export default async function ProductDetailPage({ params, searchParams }: Props) {
   const { id, username } = await params;
   const { from, collection } = await searchParams;
 
-  const product = products.find((p) => p.id === Number(id));
+  let product: Product | undefined;
 
-  if (!product) notFound();
+  try {
+    const bp = await getProductBySlug(id);
+    product = mapBackendProductToProduct(bp);
+  } catch (err) {
+    console.warn("[ProductDetail] Failed to load product from API, falling back to mock:", err);
+    const mockId = isNaN(Number(id)) ? -1 : Number(id);
+    const mockProduct = products.find((p) => p.id === mockId || p.slug === id);
+    if (mockProduct) {
+      product = mockProduct as Product;
+    }
+  }
+
+  if (!product) {
+    notFound();
+  }
 
   const backHref =
     collection

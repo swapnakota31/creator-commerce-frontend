@@ -5,7 +5,8 @@ import { ArrowRight, Zap, Sparkles } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 
 type ProductCardProps = {
-  id: number;
+  id: number | string;
+  slug?: string;
   title: string;
   image: string;
   tag: string;
@@ -19,6 +20,7 @@ type ProductCardProps = {
 
 export default function ProductCard({
   id,
+  slug,
   title,
   image,
   tag,
@@ -29,9 +31,10 @@ export default function ProductCard({
   fromCollection,
   username,
 }: ProductCardProps) {
+  const linkIdentifier = slug || id;
   const href = fromCollection
-    ? `/store/${username}/products/${id}?from=collection&collection=${fromCollection}`
-    : `/store/${username}/products/${id}`;
+    ? `/store/${username}/products/${linkIdentifier}?from=collection&collection=${fromCollection}`
+    : `/store/${username}/products/${linkIdentifier}`;
 
   return (
     <Link

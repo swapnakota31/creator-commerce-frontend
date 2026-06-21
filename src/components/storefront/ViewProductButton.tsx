@@ -5,7 +5,7 @@ import { trackEvent } from "@/lib/analytics";
 
 type Props = {
   affiliateUrl: string;
-  productId: number;
+  productId: number | string;
 };
 
 export default function ViewProductButton({ affiliateUrl, productId }: Props) {

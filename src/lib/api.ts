@@ -250,3 +250,154 @@ export const errorMessages: Record<AuthErrorType | StoreErrorType, string> = {
   store_creation_failed: "Failed to create store. Please try again.",
   store_name_taken: "This store name is already taken.",
 };
+
+// ============================================================================
+// BACKEND API INTEGRATION
+// ============================================================================
+
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://ccp-server-1gi2.onrender.com/api";
+
+export interface BackendStorefront {
+  id: string;
+  userId: string;
+  storeName: string;
+  bio?: string | null;
+  profileImage?: string | null;
+  tagline?: string | null;
+  socialLinks?: {
+    instagram?: string;
+    youtube?: string;
+    twitter?: string;
+  } | null;
+  creatorCategory?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface BackendProduct {
+  id: string;
+  title: string;
+  slug: string;
+  brand: string;
+  shortDescription?: string | null;
+  fullDescription?: string | null;
+  category: string;
+  subcategory?: string | null;
+  primaryImageUrl: string;
+  price: string;
+  currency: string;
+  rating?: string | null;
+  reviewCount: number;
+  sourcePlatform: string;
+  sourceProductId: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+  productLinks: Array<{
+    id: string;
+    productId: string;
+    platform: string;
+    originalUrl: string;
+    affiliateUrl?: string | null;
+    isPrimary?: boolean;
+    createdAt?: string;
+  }>;
+}
+
+/**
+ * Fetch storefront profile from backend by username
+ */
+export async function getStorefront(username: string): Promise<BackendStorefront> {
+  const url = `${API_BASE_URL}/stores/${username}`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      if (res.status === 404) {
+        throw new Error("Storefront not found");
+      }
+      throw new Error(`Error fetching storefront: ${res.statusText}`);
+    }
+    const result = await res.json();
+    if (!result.success || !result.data) {
+      throw new Error(result.message || "Failed to load storefront data");
+    }
+    return result.data;
+  } catch (error) {
+    console.error(`[API] getStorefront error for ${username}:`, error);
+    throw error;
+  }
+}
+
+/**
+ * Fetch all active catalog products from backend
+ */
+export async function getStoreProducts(username: string): Promise<BackendProduct[]> {
+  const url = `${API_BASE_URL}/products`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error(`Error fetching products: ${res.statusText}`);
+    }
+    const result = await res.json();
+    if (!result.success || !result.data || !result.data.products) {
+      throw new Error(result.message || "Failed to load products");
+    }
+    // Return products
+    return result.data.products;
+  } catch (error) {
+    console.error(`[API] getStoreProducts error:`, error);
+    throw error;
+  }
+}
+
+/**
+ * Send an analytics event to backend
+ */
+export async function trackAnalyticsEvent(payload: {
+  type: string;
+  creatorId?: string;
+  productId?: string;
+  deviceType: string;
+  trafficSource: string;
+}): Promise<void> {
+  const url = `${API_BASE_URL}/analytics`;
+  try {
+    // Attempt to send but fail silently if not implemented on backend
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      console.warn(`[API] Analytics tracking returned status: ${res.status}`);
+    }
+  } catch (error) {
+    console.warn("[API] Analytics tracking failed (silent):", error);
+  }
+}
+
+/**
+ * Fetch a single product's details by its slug
+ */
+export async function getProductBySlug(slug: string): Promise<BackendProduct> {
+  const url = `${API_BASE_URL}/products/${slug}`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      if (res.status === 404) {
+        throw new Error("Product not found");
+      }
+      throw new Error(`Error fetching product: ${res.statusText}`);
+    }
+    const result = await res.json();
+    if (!result.success || !result.product) {
+      throw new Error(result.message || "Failed to load product details");
+    }
+    return result.product;
+  } catch (error) {
+    console.error(`[API] getProductBySlug error for ${slug}:`, error);
+    throw error;
+  }
+}
+
+
